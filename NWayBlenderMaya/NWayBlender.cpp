@@ -14,6 +14,7 @@
 #include "NWayBlender.h"
 
 using namespace Eigen;
+using namespace AffineLib;
 
 MTypeId nwayDeformerNode::id( 0x00000300 );
 MString nwayDeformerNode::nodeName( "nway" );
@@ -46,11 +47,11 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
         MIntArray count;
         inputMesh.getTriangles( count, triangles );
 		numTet=triangles.length()/3;
-		std::vector<Matrix4f> P(numTet);
+		std::vector<Matrix4d> P(numTet);
         PI.resize(numTet);
         tetMatrix(pts, triangles, P);
         // prepare ARAP solver
-		for(unsigned int i=0;i<numTet;i++)
+		for(int i=0;i<numTet;i++)
 			PI[i] = P[i].inverse();
 		int dim=numTet+numPts;
         arapHI(PI, triangles, dim);
@@ -60,7 +61,7 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
     logR.resize(nnumMesh);
     logS.resize(nnumMesh);
     L.resize(nnumMesh);
-	for(unsigned int j=numMesh; j<nnumMesh; j++){
+	for(int j=numMesh; j<nnumMesh; j++){
         hBlendMesh.jumpToElement(j);
         MFnMesh blendMesh(hBlendMesh.inputValue().asMesh());
 	    MPointArray pts;
@@ -69,38 +70,38 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
             MGlobal::displayInfo("incompatible mesh");
             return MS::kFailure;
         }
-		std::vector<Matrix4f> Q(numTet);
+		std::vector<Matrix4d> Q(numTet);
         tetMatrix(pts, triangles, Q);
-		Matrix4f aff;
-        Matrix3f R,U;
-        Vector3f s;
+		Matrix4d aff;
+        Matrix3d R,U;
+        Vector3d s;
 		logR[j].resize(numTet);
 		logS[j].resize(numTet);
 		L[j].resize(numTet);
-        for(unsigned int i=0;i<numTet;i++)  {
+        for(int i=0;i<numTet;i++)  {
             aff=PI[i]*Q[i];
-            Matrixlib::parametriseGL(aff.block(0,0,3,3), logS[j][i] ,R);
-            logR[j][i]=Matrixlib::logSO(R);
-            L[j][i]=Matrixlib::transPart(aff);
+            parametriseGL(aff.block(0,0,3,3), logS[j][i] ,R);
+            logR[j][i]=logSO(R);
+            L[j][i]=transPart(aff);
 		}
 	}
     numMesh=nnumMesh;
     // load weights
-    std::vector<float> weight(numMesh);
+    std::vector<double> weight(numMesh);
 	if(hWeight.elementCount() != numMesh) { return MS::kSuccess; }
-	for(unsigned int i=0;i<numMesh;i++){
+	for(int i=0;i<numMesh;i++){
 		hWeight.jumpToArrayElement(i);
-		weight[i]=hWeight.inputValue().asFloat();
+		weight[i]=hWeight.inputValue().asDouble();
 	}
 	// compute ideal affine
 	int dim=numTet+numPts;
-	std::vector<Matrix4f> At(numTet);
+	std::vector<Matrix4d> At(numTet);
     arapAt(logR, logS, L, weight, At);
     // solve ARAP
-	MatrixXf G=MatrixXf::Zero(dim,3);
+	MatrixXd G=MatrixXd::Zero(dim,3);
     arapG(At, PI, triangles, G);
-    MatrixXf Sol = solver.solve(G);
-	for(unsigned int i=0;i<numPts;i++){
+    MatrixXd Sol = solver.solve(G);
+	for(int i=0;i<numPts;i++){
 		pts[i].x=Sol(i,0);
 		pts[i].y=Sol(i,1);
 		pts[i].z=Sol(i,2);
@@ -112,9 +113,9 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
 
 
 // construct face tetrahedra by adding normals to face triangles
-void nwayDeformerNode::tetMatrix(const MPointArray& p, const MIntArray& triangles, std::vector<Matrix4f>& m){
+void nwayDeformerNode::tetMatrix(const MPointArray& p, const MIntArray& triangles, std::vector<Matrix4d>& m){
     MVector u, v, q;
-    for(unsigned int i=0;i<numTet;i++)
+    for(int i=0;i<numTet;i++)
     {
         u=p[triangles[3*i+1]]-p[triangles[3*i]];
         v=p[triangles[3*i+2]]-p[triangles[3*i]];
@@ -128,22 +129,22 @@ void nwayDeformerNode::tetMatrix(const MPointArray& p, const MIntArray& triangle
     }
 }
 // ARAP slover
-void nwayDeformerNode::arapHI(const std::vector<Matrix4f>& PI, const MIntArray& triangles, int dim){
+void nwayDeformerNode::arapHI(const std::vector<Matrix4d>& PI, const MIntArray& triangles, int dim){
     std::vector<T> tripletList;
     tripletList.reserve(dim*dim);
-    Matrix4f Hlist;
-	Matrix4f diag=Matrix4f::Identity();
+    Matrix4d Hlist;
+	Matrix4d diag=Matrix4d::Identity();
 	diag(3,3)=EPSILON;
     int s,t;
-	for(unsigned int i=0;i<numTet;i++){
+	for(int i=0;i<numTet;i++){
 		Hlist=PI[i].transpose()*diag*PI[i];
-		for(unsigned int j=0;j<4;j++){
+		for(int j=0;j<4;j++){
             if(j==3){
                 s=numPts+i;
             }else{
                 s=triangles[3*i+j];
             }
-			for(unsigned int k=0;k<4;k++){
+			for(int k=0;k<4;k++){
                 if(k==3){
                     t=numPts+i;
                 }else{
@@ -158,40 +159,40 @@ void nwayDeformerNode::arapHI(const std::vector<Matrix4f>& PI, const MIntArray& 
     solver.compute(mat);
 }
 // blend matrices
-void nwayDeformerNode::arapAt(const std::vector< std::vector<Matrix3f> >& logR, const std::vector< std::vector<Matrix3f> >& logS,
-		const std::vector< std::vector<Vector3f> >& L, const std::vector<float>& weight, std::vector<Matrix4f>& At)
+void nwayDeformerNode::arapAt(const std::vector< std::vector<Matrix3d> >& logR, const std::vector< std::vector<Matrix3d> >& logS,
+		const std::vector< std::vector<Vector3d> >& L, const std::vector<double>& weight, std::vector<Matrix4d>& At)
 {
-    Matrix3f lR,lS,A;
-    Vector3f lL;
-    for(unsigned int i=0;i<numTet;i++)
+    Matrix3d lR,lS,A;
+    Vector3d lL;
+    for(int i=0;i<numTet;i++)
     {
-        lR = Matrix3f::Zero();
-        lS = Matrix3f::Zero();
-        lL = Vector3f::Zero();
-        for(unsigned int j=0;j<numMesh;j++)
+        lR = Matrix3d::Zero();
+        lS = Matrix3d::Zero();
+        lL = Vector3d::Zero();
+        for(int j=0;j<numMesh;j++)
         {
             lR += weight[j]*logR[j][i];
             lS += weight[j]*logS[j][i];
             lL += weight[j]*L[j][i];
         }
-        A=Matrixlib::expSym(lS)*Matrixlib::expSO(lR);
-        At[i]=Matrixlib::affine(A,lL);
+        A=expSym(lS)*expSO(lR);
+        At[i]=affine(A,lL);
     }
 }
 
 // ARAP
-void nwayDeformerNode::arapG(const std::vector<Matrix4f>& At, const std::vector<Matrix4f>& PI,
-	 const MIntArray& triangles, MatrixXf& G)
+void nwayDeformerNode::arapG(const std::vector<Matrix4d>& At, const std::vector<Matrix4d>& PI,
+	 const MIntArray& triangles, MatrixXd& G)
 {
-    Matrix4f Glist;
-	Matrix4f diag=Matrix4f::Identity();
+    Matrix4d Glist;
+	Matrix4d diag=Matrix4d::Identity();
 	diag(3,3)=EPSILON;
-    for(unsigned int i=0;i<numTet;i++)
+    for(int i=0;i<numTet;i++)
     {
 		Glist=At[i].transpose()*diag*PI[i];
-        for(unsigned int k=0;k<3;k++)
+        for(int k=0;k<3;k++)
         {
-            for(unsigned int j=0;j<3;j++)
+            for(int j=0;j<3;j++)
             {
                 G(triangles[3*i+j],k) += Glist(k,j);
             }
@@ -213,7 +214,7 @@ MStatus nwayDeformerNode::initialize()
     addAttribute(aBlendMesh);
 	attributeAffects( aBlendMesh, outputGeom );
 
-	aWeight = nAttr.create("blendWeight", "bw", MFnNumericData::kFloat, 0.0);
+	aWeight = nAttr.create("blendWeight", "bw", MFnNumericData::kDouble, 0.0);
     nAttr.setArray(true);
     nAttr.setKeyable(true);
     nAttr.setStorable(true);

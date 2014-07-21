@@ -5,10 +5,11 @@
 
 #include <numeric>
 #include <Eigen/SparseLU>
+#include <Eigen/SparseCholesky>
 
 #include "affinelib.h"
 
-typedef Eigen::SparseMatrix<float> SpMat;
+typedef Eigen::SparseMatrix<double> SpMat;
 typedef Eigen::Triplet<double> T;
 
 using namespace Eigen;
@@ -30,21 +31,22 @@ public:
 
 private:
     void readMatrixArray(MArrayDataHandle& handle, std::vector<Matrix4d>& m);
-	void tetMatrix(const MPointArray& p, const MIntArray& triangles, std::vector<Matrix4f>& m);
-	void arapHI(const std::vector<Matrix4f>& PI, const MIntArray& triangles, int dim);
-	void arapAt(const std::vector< std::vector<Matrix3f> >& logR, const std::vector< std::vector<Matrix3f> >& logS,
-		const std::vector< std::vector<Vector3f> >& L, const std::vector<float>& weight, std::vector<Matrix4f>& At);
-	void arapG(const std::vector< Matrix4f>& At, const std::vector<Matrix4f>& PI,
-		 const MIntArray& triangles,MatrixXf& G);
+	void tetMatrix(const MPointArray& p, const MIntArray& triangles, std::vector<Matrix4d>& m);
+	void arapHI(const std::vector<Matrix4d>& PI, const MIntArray& triangles, int dim);
+	void arapAt(const std::vector< std::vector<Matrix3d> >& logR, const std::vector< std::vector<Matrix3d> >& logS,
+		const std::vector< std::vector<Vector3d> >& L, const std::vector<double>& weight, std::vector<Matrix4d>& At);
+	void arapG(const std::vector< Matrix4d>& At, const std::vector<Matrix4d>& PI,
+		 const MIntArray& triangles,MatrixXd& G);
 	
-	std::vector<Matrix4f> PI;
-	std::vector< std::vector<Matrix3f> > logR;
-	std::vector< std::vector<Matrix3f> > logS;
-	std::vector< std::vector<Vector3f> > L;
+	std::vector<Matrix4d> PI;
+	std::vector< std::vector<Matrix3d> > logR;
+	std::vector< std::vector<Matrix3d> > logS;
+	std::vector< std::vector<Vector3d> > L;
 	MIntArray triangles;
     MPointArray pts;
-    SparseLU<SpMat> solver;
-	unsigned int numMesh;
-	unsigned int numPts;
-    unsigned int numTet;
+    SimplicialLDLT<SpMat> solver;
+//    SparseLU<SpMat> solver;
+	int numMesh;
+	int numPts;
+    int numTet;
 };
