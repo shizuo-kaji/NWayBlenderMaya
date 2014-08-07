@@ -8,14 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		2A8DB49119226A4200D79BA7 /* StdAfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DB49019226A4200D79BA7 /* StdAfx.cpp */; };
-		2A8DB49D192272C500D79BA7 /* NWayBlender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DB49B192272C500D79BA7 /* NWayBlender.cpp */; };
-		2A8DB49E192272C500D79BA7 /* NWayBlender.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A8DB49C192272C500D79BA7 /* NWayBlender.h */; };
-		2A8DB4A01922738D00D79BA7 /* affinelib.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A8DB49F1922738D00D79BA7 /* affinelib.h */; };
+		2A8DB49D192272C500D79BA7 /* nwayBlender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DB49B192272C500D79BA7 /* nwayBlender.cpp */; };
+		2A8DB49E192272C500D79BA7 /* nwayBlender.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A8DB49C192272C500D79BA7 /* nwayBlender.h */; };
 		2A8DB4AB1922742200D79BA7 /* StdAfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DB4AA1922742200D79BA7 /* StdAfx.cpp */; };
 		2A8DB4B31922744900D79BA7 /* weightController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DB4B11922744900D79BA7 /* weightController.cpp */; };
 		2A8DB4B41922744900D79BA7 /* weightController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A8DB4B21922744900D79BA7 /* weightController.h */; };
-		2A8DB4B6192274AC00D79BA7 /* WeightController.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A8DB4A61922742200D79BA7 /* WeightController.bundle */; };
-		2A8DB4B7192274B500D79BA7 /* NWayBlenderMaya.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A8DB48B19226A4200D79BA7 /* NWayBlenderMaya.bundle */; };
+		2A8DB4B6192274AC00D79BA7 /* weightController.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A8DB4A61922742200D79BA7 /* weightController.bundle */; };
+		2A8DB4B7192274B500D79BA7 /* nwayBlender.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A8DB48B19226A4200D79BA7 /* nwayBlender.bundle */; };
+		2AD556C0199407A0001F79B2 /* affinelib.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AD556BD199407A0001F79B2 /* affinelib.h */; };
+		2AD556C1199407A0001F79B2 /* MeshMaya.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AD556BE199407A0001F79B2 /* MeshMaya.h */; };
+		2AD556C2199407A0001F79B2 /* tetrise.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AD556BF199407A0001F79B2 /* tetrise.h */; };
+		2AD556C4199407FF001F79B2 /* ARAP.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AD556C3199407FF001F79B2 /* ARAP.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,7 +28,7 @@
 			dstPath = "/Users/Shared/Autodesk/maya/plug-ins";
 			dstSubfolderSpec = 0;
 			files = (
-				2A8DB4B7192274B500D79BA7 /* NWayBlenderMaya.bundle in CopyFiles */,
+				2A8DB4B7192274B500D79BA7 /* nwayBlender.bundle in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,28 +38,32 @@
 			dstPath = "/Users/Shared/Autodesk/maya/plug-ins";
 			dstSubfolderSpec = 0;
 			files = (
-				2A8DB4B6192274AC00D79BA7 /* WeightController.bundle in CopyFiles */,
+				2A8DB4B6192274AC00D79BA7 /* weightController.bundle in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2A8DB48B19226A4200D79BA7 /* NWayBlenderMaya.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = NWayBlenderMaya.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A35629B198A54E0002AA823 /* ui_nwayBlender.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = ui_nwayBlender.py; path = ../../Maya/plugin_deformer/ui_nwayBlender.py; sourceTree = "<group>"; };
+		2A8DB48B19226A4200D79BA7 /* nwayBlender.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = nwayBlender.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8DB49019226A4200D79BA7 /* StdAfx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StdAfx.cpp; sourceTree = "<group>"; };
 		2A8DB49219226A4200D79BA7 /* StdAfx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdAfx.h; sourceTree = "<group>"; };
 		2A8DB49319226A4200D79BA7 /* mayaHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mayaHeaders.h; sourceTree = "<group>"; };
 		2A8DB499192272AF00D79BA7 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2A8DB49A192272AF00D79BA7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		2A8DB49B192272C500D79BA7 /* NWayBlender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NWayBlender.cpp; sourceTree = "<group>"; };
-		2A8DB49C192272C500D79BA7 /* NWayBlender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWayBlender.h; sourceTree = "<group>"; };
-		2A8DB49F1922738D00D79BA7 /* affinelib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = affinelib.h; sourceTree = "<group>"; };
-		2A8DB4A61922742200D79BA7 /* WeightController.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = WeightController.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A8DB49B192272C500D79BA7 /* nwayBlender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nwayBlender.cpp; sourceTree = "<group>"; };
+		2A8DB49C192272C500D79BA7 /* nwayBlender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nwayBlender.h; sourceTree = "<group>"; };
+		2A8DB4A61922742200D79BA7 /* weightController.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = weightController.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8DB4AA1922742200D79BA7 /* StdAfx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StdAfx.cpp; sourceTree = "<group>"; };
 		2A8DB4AC1922742200D79BA7 /* StdAfx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdAfx.h; sourceTree = "<group>"; };
 		2A8DB4AD1922742200D79BA7 /* mayaHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mayaHeaders.h; sourceTree = "<group>"; };
 		2A8DB4B11922744900D79BA7 /* weightController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = weightController.cpp; sourceTree = "<group>"; };
 		2A8DB4B21922744900D79BA7 /* weightController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weightController.h; sourceTree = "<group>"; };
+		2AD556BD199407A0001F79B2 /* affinelib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = affinelib.h; path = ../affinelib.h; sourceTree = "<group>"; };
+		2AD556BE199407A0001F79B2 /* MeshMaya.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeshMaya.h; path = ../MeshMaya.h; sourceTree = "<group>"; };
+		2AD556BF199407A0001F79B2 /* tetrise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tetrise.h; path = ../tetrise.h; sourceTree = "<group>"; };
+		2AD556C3199407FF001F79B2 /* ARAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARAP.h; path = ../ARAP.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +87,13 @@
 		2A8DB48219226A4200D79BA7 = {
 			isa = PBXGroup;
 			children = (
-				2A8DB49F1922738D00D79BA7 /* affinelib.h */,
-				2A8DB48D19226A4200D79BA7 /* NWayBlenderMaya */,
-				2A8DB4A71922742200D79BA7 /* WeightController */,
+				2AD556C3199407FF001F79B2 /* ARAP.h */,
+				2AD556BD199407A0001F79B2 /* affinelib.h */,
+				2AD556BE199407A0001F79B2 /* MeshMaya.h */,
+				2AD556BF199407A0001F79B2 /* tetrise.h */,
+				2A35629B198A54E0002AA823 /* ui_nwayBlender.py */,
+				2A8DB48D19226A4200D79BA7 /* nwayBlender */,
+				2A8DB4A71922742200D79BA7 /* weightController */,
 				2A8DB48C19226A4200D79BA7 /* Products */,
 				2A8DB499192272AF00D79BA7 /* LICENSE */,
 				2A8DB49A192272AF00D79BA7 /* README.md */,
@@ -92,25 +103,25 @@
 		2A8DB48C19226A4200D79BA7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2A8DB48B19226A4200D79BA7 /* NWayBlenderMaya.bundle */,
-				2A8DB4A61922742200D79BA7 /* WeightController.bundle */,
+				2A8DB48B19226A4200D79BA7 /* nwayBlender.bundle */,
+				2A8DB4A61922742200D79BA7 /* weightController.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2A8DB48D19226A4200D79BA7 /* NWayBlenderMaya */ = {
+		2A8DB48D19226A4200D79BA7 /* nwayBlender */ = {
 			isa = PBXGroup;
 			children = (
-				2A8DB49B192272C500D79BA7 /* NWayBlender.cpp */,
-				2A8DB49C192272C500D79BA7 /* NWayBlender.h */,
+				2A8DB49B192272C500D79BA7 /* nwayBlender.cpp */,
+				2A8DB49C192272C500D79BA7 /* nwayBlender.h */,
 				2A8DB49019226A4200D79BA7 /* StdAfx.cpp */,
 				2A8DB49219226A4200D79BA7 /* StdAfx.h */,
 				2A8DB49319226A4200D79BA7 /* mayaHeaders.h */,
 			);
-			path = NWayBlenderMaya;
+			path = nwayBlender;
 			sourceTree = "<group>";
 		};
-		2A8DB4A71922742200D79BA7 /* WeightController */ = {
+		2A8DB4A71922742200D79BA7 /* weightController */ = {
 			isa = PBXGroup;
 			children = (
 				2A8DB4B11922744900D79BA7 /* weightController.cpp */,
@@ -119,6 +130,7 @@
 				2A8DB4AC1922742200D79BA7 /* StdAfx.h */,
 				2A8DB4AD1922742200D79BA7 /* mayaHeaders.h */,
 			);
+			name = weightController;
 			path = WeightController;
 			sourceTree = "<group>";
 		};
@@ -129,8 +141,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A8DB49E192272C500D79BA7 /* NWayBlender.h in Headers */,
-				2A8DB4A01922738D00D79BA7 /* affinelib.h in Headers */,
+				2AD556C4199407FF001F79B2 /* ARAP.h in Headers */,
+				2AD556C1199407A0001F79B2 /* MeshMaya.h in Headers */,
+				2A8DB49E192272C500D79BA7 /* nwayBlender.h in Headers */,
+				2AD556C0199407A0001F79B2 /* affinelib.h in Headers */,
+				2AD556C2199407A0001F79B2 /* tetrise.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,9 +160,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2A8DB48A19226A4200D79BA7 /* NWayBlenderMaya */ = {
+		2A8DB48A19226A4200D79BA7 /* nwayBlender */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2A8DB49619226A4200D79BA7 /* Build configuration list for PBXNativeTarget "NWayBlenderMaya" */;
+			buildConfigurationList = 2A8DB49619226A4200D79BA7 /* Build configuration list for PBXNativeTarget "nwayBlender" */;
 			buildPhases = (
 				2A8DB48719226A4200D79BA7 /* Sources */,
 				2A8DB48819226A4200D79BA7 /* Frameworks */,
@@ -158,14 +173,14 @@
 			);
 			dependencies = (
 			);
-			name = NWayBlenderMaya;
+			name = nwayBlender;
 			productName = NWayBlenderMaya;
-			productReference = 2A8DB48B19226A4200D79BA7 /* NWayBlenderMaya.bundle */;
+			productReference = 2A8DB48B19226A4200D79BA7 /* nwayBlender.bundle */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		2A8DB4A51922742200D79BA7 /* WeightController */ = {
+		2A8DB4A51922742200D79BA7 /* weightController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2A8DB4AE1922742200D79BA7 /* Build configuration list for PBXNativeTarget "WeightController" */;
+			buildConfigurationList = 2A8DB4AE1922742200D79BA7 /* Build configuration list for PBXNativeTarget "weightController" */;
 			buildPhases = (
 				2A8DB4A21922742200D79BA7 /* Sources */,
 				2A8DB4A31922742200D79BA7 /* Frameworks */,
@@ -176,9 +191,9 @@
 			);
 			dependencies = (
 			);
-			name = WeightController;
+			name = weightController;
 			productName = WeightController;
-			productReference = 2A8DB4A61922742200D79BA7 /* WeightController.bundle */;
+			productReference = 2A8DB4A61922742200D79BA7 /* weightController.bundle */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -190,7 +205,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "mcg-q";
 			};
-			buildConfigurationList = 2A8DB48619226A4200D79BA7 /* Build configuration list for PBXProject "NWayBlenderMaya" */;
+			buildConfigurationList = 2A8DB48619226A4200D79BA7 /* Build configuration list for PBXProject "NWayBlender" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -202,8 +217,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2A8DB48A19226A4200D79BA7 /* NWayBlenderMaya */,
-				2A8DB4A51922742200D79BA7 /* WeightController */,
+				2A8DB48A19226A4200D79BA7 /* nwayBlender */,
+				2A8DB4A51922742200D79BA7 /* weightController */,
 			);
 		};
 /* End PBXProject section */
@@ -214,7 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A8DB49119226A4200D79BA7 /* StdAfx.cpp in Sources */,
-				2A8DB49D192272C500D79BA7 /* NWayBlender.cpp in Sources */,
+				2A8DB49D192272C500D79BA7 /* nwayBlender.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +331,7 @@
 					MAC_PLUGIN,
 					_BOOL,
 					REQUIRE_IOSTREAM,
+					DEBUG,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -328,7 +344,7 @@
 				LIBRARY_SEARCH_PATHS = "$(MAYA_LOCATION)/Maya.app/Contents/MacOS";
 				MACH_O_TYPE = mh_bundle;
 				MACOSX_DEPLOYMENT_TARGET = "";
-				MAYA_LOCATION = /Applications/Autodesk/maya2014;
+				MAYA_LOCATION = /Applications/Autodesk/maya;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-Wl,-executable_path,$(MAYA_LOCATION)/Maya.app/Contents/MacOS",
@@ -371,7 +387,7 @@
 				LIBRARY_SEARCH_PATHS = "$(MAYA_LOCATION)/Maya.app/Contents/MacOS";
 				MACH_O_TYPE = mh_bundle;
 				MACOSX_DEPLOYMENT_TARGET = "";
-				MAYA_LOCATION = /Applications/Autodesk/maya2014;
+				MAYA_LOCATION = /Applications/Autodesk/maya;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-Wl,-executable_path,$(MAYA_LOCATION)/Maya.app/Contents/MacOS",
@@ -415,7 +431,7 @@
 				LIBRARY_SEARCH_PATHS = "$(MAYA_LOCATION)/Maya.app/Contents/MacOS";
 				MACH_O_TYPE = mh_bundle;
 				MACOSX_DEPLOYMENT_TARGET = "";
-				MAYA_LOCATION = /Applications/Autodesk/maya2014;
+				MAYA_LOCATION = /Applications/Autodesk/maya;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-Wl,-executable_path,$(MAYA_LOCATION)/Maya.app/Contents/MacOS",
@@ -458,7 +474,7 @@
 				LIBRARY_SEARCH_PATHS = "$(MAYA_LOCATION)/Maya.app/Contents/MacOS";
 				MACH_O_TYPE = mh_bundle;
 				MACOSX_DEPLOYMENT_TARGET = "";
-				MAYA_LOCATION = /Applications/Autodesk/maya2014;
+				MAYA_LOCATION = /Applications/Autodesk/maya;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-Wl,-executable_path,$(MAYA_LOCATION)/Maya.app/Contents/MacOS",
@@ -479,7 +495,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2A8DB48619226A4200D79BA7 /* Build configuration list for PBXProject "NWayBlenderMaya" */ = {
+		2A8DB48619226A4200D79BA7 /* Build configuration list for PBXProject "NWayBlender" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A8DB49419226A4200D79BA7 /* Debug */,
@@ -488,7 +504,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2A8DB49619226A4200D79BA7 /* Build configuration list for PBXNativeTarget "NWayBlenderMaya" */ = {
+		2A8DB49619226A4200D79BA7 /* Build configuration list for PBXNativeTarget "nwayBlender" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A8DB49719226A4200D79BA7 /* Debug */,
@@ -497,13 +513,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2A8DB4AE1922742200D79BA7 /* Build configuration list for PBXNativeTarget "WeightController" */ = {
+		2A8DB4AE1922742200D79BA7 /* Build configuration list for PBXNativeTarget "weightController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A8DB4AF1922742200D79BA7 /* Debug */,
 				2A8DB4B01922742200D79BA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

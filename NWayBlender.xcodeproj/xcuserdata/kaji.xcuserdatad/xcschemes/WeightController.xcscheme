@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2A8DB4A51922742200D79BA7"
-               BuildableName = "WeightController.bundle"
-               BlueprintName = "WeightController"
-               ReferencedContainer = "container:NWayBlenderMaya.xcodeproj">
+               BuildableName = "weightController.bundle"
+               BlueprintName = "weightController"
+               ReferencedContainer = "container:NWayBlender.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

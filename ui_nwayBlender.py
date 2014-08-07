@@ -10,12 +10,14 @@
 import maya.cmds as cmds
 import pymel.core as pm
 
-try:
-#    cmds.loadPlugin("nwayDeformer.py")
-#    cmds.loadPlugin("nwayDeformerFast.py")
-    cmds.loadPlugin("NWayBlenderMaya");
-except:
-    print("Plugin already loaded")
+#deformerTypes = ["nwayDeformer","nwayDeformerFast","nwayBlender"]
+deformerTypes = ["nwayBlender"]
+
+for type in deformerTypes:
+    try:
+        cmds.loadPlugin(type)
+    except:
+        print("Plugin %s already loaded" %(type))
 
 class UI_NwayBlender:
     uiID = "NwayBlender"
@@ -27,56 +29,61 @@ class UI_NwayBlender:
         win = pm.window(self.uiID, title=self.title, menuBar=True)
         with win:
             pm.menu( label='Create', tearOff=True )
-#            pm.menuItem( label="NwayPy", c=pm.Callback( self.initPlugin, "nwayDeformer") )
-#            pm.menuItem( label="NwayFast", c=pm.Callback( self.initPlugin, "nwayDeformerFast") )
-            pm.menuItem( label="Nway", c=pm.Callback( self.initPlugin, "nway") )
-            pm.menu( label='file', tearOff=True )
+            for type in deformerTypes:
+                pm.menuItem( label=type, c=pm.Callback( self.initPlugin, type) )
+            #pm.menu( label='file', tearOff=True )
             #            pm.menuItem( label="Save mesh", c=pm.Callback( self.saveMesh) )
             #pm.menuItem( label="Load mesh", c=pm.Callback( self.loadMesh) )
             self._parentLayout = pm.columnLayout( adj=True )
             with self._parentLayout:
                 self.createUISet()
-                    
+    
     def createUISet(self):
         self._childLayout = pm.columnLayout( adj=True )
         with self._childLayout:
             pm.text(l="Click cage mesh first, then shift+click target mesh, and click the menu item.")
-#            for deformerType in ["nwayDeformer","nwayDeformerFast","nway"]:
-            for deformerType in ["nway"]:
-                deformers = pm.ls(type=deformerType)
+            for type in deformerTypes:
+                deformers = pm.ls(type=type)
                 for node in deformers:
                     frameLayout = pm.frameLayout( label=node.name(), collapsable = True)
                     with frameLayout:
-                        with pm.rowLayout(numberOfColumns=1) :
+                        with pm.rowLayout(numberOfColumns=3) :
                             pm.button( l="Del", c=pm.Callback( self.deleteNode, node))
+                            pm.attrFieldSliderGrp( label="iteration", min=1, max=20, attribute=node.it)
+                            pm.attrControlGrp( label="rotation consistency", attribute= node.rc)
+                        with pm.rowLayout(numberOfColumns=2) :
+                            pm.attrControlGrp( label="blend mode", attribute= node.bm)
+                            pm.attrControlGrp( label="tet mode", attribute= node.tm)
+                        with pm.rowLayout(numberOfColumns=2) :    
+                            pm.attrControlGrp( label="visualise energy", attribute= node.ve)
+                            pm.attrFieldSliderGrp( label="visualisation multiplier", min=0.001, max=1000, attribute=node.vmp)
                         for j in range(node.blendMesh.numElements()):
                             with pm.rowLayout(numberOfColumns=1) :
                                 pm.attrFieldSliderGrp(label=node.blendWeight[j].getAlias(), min=-1.0, max=2.0, attribute= node.blendWeight[j])
-
-    def initPlugin(self, deformerType):
+    
+    def initPlugin(self, type):
         meshes = pm.selected(tr=1)
         if not meshes:
             return
         pm.select( meshes[-1])
-        deformer = pm.ls(cmds.deformer(type=deformerType)[0])[0]
+        deformer = pm.ls(cmds.deformer(type=type)[0])[0]
         for i in range(len(meshes)-1):
             deformer.bw[i].set(0.0)
             shape=meshes[i].getShapes()[0]
             cmds.connectAttr(shape+".outMesh", deformer+".blendMesh[%s]" %(i))
             pm.aliasAttr(meshes[i].name(), deformer.bw[i].name())
         self.updateUI()
-        
+    
     # delete deformer node
     def deleteNode(self,node):
         cmds.delete(node.name())
         self.updateUI()
-
+    
+    # update UI
     def updateUI(self):
-        # update UI
         pm.deleteUI( self._childLayout )
         pm.setParent(self._parentLayout)
         self.createUISet()
-        return
     
     def saveMesh(self):
         filedir=os.path.abspath(os.path.dirname(__file__))+"/"
@@ -86,14 +93,14 @@ class UI_NwayBlender:
         tri=mesh.getTriangleList(shape.name())
         np.save(filedir+"test"+".pts", p)
         np.save(filedir+"test"+".tri", tri)
-#        np.save(filedir+shape.name()+".pts", p)
-#        np.save(filedir+shape.name()+".tri", tri)
+        #        np.save(filedir+shape.name()+".pts", p)
+        #        np.save(filedir+shape.name()+".tri", tri)
         print(filedir+shape.name()+": saved")
         return
     
     def loadMesh(self):
         tet=np.load(filedir+"test"+".tet")
-#        tet=np.load(filedir+shape.name()+".tet")
+        #        tet=np.load(filedir+shape.name()+".tet")
         print(tet)
         return
     

@@ -12,7 +12,7 @@ import pymel.core as pm
 #import os
 try:
 #    cmds.loadPlugin(os.path.abspath(os.path.dirname(__file__))+"/weightControllerNode.py")
-    cmds.loadPlugin("WeightController")
+    cmds.loadPlugin("weightController")
 except:
     print("Plugin already loaded")
     
@@ -43,7 +43,8 @@ class UI_WeightController:
             for deformer in self.deformers:
                 frameLayout = pm.frameLayout( label=deformer.name(), collapsable = True)
                 with frameLayout:
-                    with pm.rowLayout(numberOfColumns=2) :
+                    with pm.rowLayout(numberOfColumns=3) :
+                        pm.button( l="Del", c=pm.Callback( self.deleteNode, deformer))
                         list = cmds.listConnections(deformer.name(), t='nway');
                         pm.button( l="Out2NWay", c=pm.Callback(self.connectOut, deformer))
             
@@ -68,5 +69,9 @@ class UI_WeightController:
         pm.deleteUI( self._childLayout )
         pm.setParent(self._parentLayout)
         self.createUISet()
+
+    def deleteNode(self,node):
+        cmds.delete(node.name())
+        self.updateUI()
 
 
