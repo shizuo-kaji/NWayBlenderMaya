@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A135EB719F56C78007402FC /* deformerConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A135EB619F56C78007402FC /* deformerConst.h */; };
 		2A8DB49119226A4200D79BA7 /* StdAfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DB49019226A4200D79BA7 /* StdAfx.cpp */; };
 		2A8DB49D192272C500D79BA7 /* nwayBlender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DB49B192272C500D79BA7 /* nwayBlender.cpp */; };
 		2A8DB49E192272C500D79BA7 /* nwayBlender.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A8DB49C192272C500D79BA7 /* nwayBlender.h */; };
@@ -45,6 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2A135EB619F56C78007402FC /* deformerConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = deformerConst.h; path = ../deformerConst.h; sourceTree = "<group>"; };
+		2A2EE25E1A0F8C47008979A4 /* ui_weightController.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = ui_weightController.py; path = ../../maya/plugin_deformer/ui_weightController.py; sourceTree = "<group>"; };
 		2A35629B198A54E0002AA823 /* ui_nwayBlender.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = ui_nwayBlender.py; path = ../../Maya/plugin_deformer/ui_nwayBlender.py; sourceTree = "<group>"; };
 		2A8DB48B19226A4200D79BA7 /* nwayBlender.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = nwayBlender.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8DB49019226A4200D79BA7 /* StdAfx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StdAfx.cpp; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 		2A8DB48219226A4200D79BA7 = {
 			isa = PBXGroup;
 			children = (
+				2A135EB619F56C78007402FC /* deformerConst.h */,
+				2A2EE25E1A0F8C47008979A4 /* ui_weightController.py */,
 				2AD556C3199407FF001F79B2 /* ARAP.h */,
 				2AD556BD199407A0001F79B2 /* affinelib.h */,
 				2AD556BE199407A0001F79B2 /* MeshMaya.h */,
@@ -143,6 +148,7 @@
 			files = (
 				2AD556C4199407FF001F79B2 /* ARAP.h in Headers */,
 				2AD556C1199407A0001F79B2 /* MeshMaya.h in Headers */,
+				2A135EB719F56C78007402FC /* deformerConst.h in Headers */,
 				2A8DB49E192272C500D79BA7 /* nwayBlender.h in Headers */,
 				2AD556C0199407A0001F79B2 /* affinelib.h in Headers */,
 				2AD556C2199407A0001F79B2 /* tetrise.h in Headers */,
@@ -202,7 +208,7 @@
 		2A8DB48319226A4200D79BA7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "mcg-q";
 			};
 			buildConfigurationList = 2A8DB48619226A4200D79BA7 /* Build configuration list for PBXProject "NWayBlender" */;
@@ -321,6 +327,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = "";
 				DYLIB_CURRENT_VERSION = "";
@@ -366,6 +373,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DYLIB_COMPATIBILITY_VERSION = "";
 				DYLIB_CURRENT_VERSION = "";
@@ -409,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = "";
 				DYLIB_CURRENT_VERSION = "";
@@ -453,6 +462,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DYLIB_COMPATIBILITY_VERSION = "";
 				DYLIB_CURRENT_VERSION = "";

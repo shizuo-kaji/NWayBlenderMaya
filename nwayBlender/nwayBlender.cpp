@@ -15,19 +15,6 @@
 #include <set>
 #include <queue>
 
-// parametrisation mode
-#define BM_SRL 0
-#define BM_SES 1
-#define BM_LOG3 3
-#define BM_LOG4 4
-#define BM_QSL 5
-#define BM_AFF 10
-#define BM_OFF -1
-
-// error codes
-#define ERROR_ARAP_PRECOMPUTE 1
-
-
 using namespace Eigen;
 using namespace AffineLib;
 using namespace Tetrise;
@@ -43,6 +30,7 @@ MObject nwayDeformerNode::aRotationConsistency;
 MObject nwayDeformerNode::aVisualiseEnergy;
 MObject nwayDeformerNode::aVisualisationMultiplier;
 MObject nwayDeformerNode::aEnergy;
+MObject nwayDeformerNode::aInitRotation;
 
 // blend matrices
 template<typename T>
@@ -103,8 +91,6 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
     MStatus status;
     MThreadUtils::syncNumOpenMPThreads();    // for OpenMP
     
-    if(isError>0) return MS::kFailure;
-    
     MArrayDataHandle hBlendMesh = data.inputArrayValue(aBlendMesh);
     short numIter = data.inputValue( aIteration ).asShort();
     short nblendMode = data.inputValue( aBlendMode ).asShort();
@@ -145,8 +131,8 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
         std::vector< std::map<int,double> > constraint(0);
         //constraint[0][0]=1.0;
         isError = ARAPprecompute(PI, tetList, tetWeight, constraint, EPSILON, dim, constraintMat, solver);
-        if(isError>0) return MS::kFailure;
     }
+    if(isError>0) return MS::kFailure;
 	// if blend mesh is added, compute log for each tet
     logR.resize(nnumMesh); logS.resize(nnumMesh);
     R.resize(nnumMesh); S.resize(nnumMesh);
@@ -198,8 +184,12 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
         if(rotationCosistency){
             std::set<int> remain;
             std::queue<int> later;
-            std::vector<Vector3d> prevN(numTet, Vector3d::Zero());
-            std::vector<double> prevTheta(numTet, 0.0);
+            // load initial rotation from the attr
+            Matrix3d initR;
+            double angle = data.inputValue(aInitRotation).asDouble();
+            initR << 0,M_PI * angle/180.0,0,  -M_PI * angle/180.0,0,0, 0,0,0;
+            std::vector<Matrix3d> prevSO(numTet, initR);
+            // create the adjacency graph to traverse
             for(int i=0;i<numTet;i++){
                 remain.insert(remain.end(),i);
             }
@@ -213,12 +203,11 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
                     next = *remain.begin();
                     remain.erase(remain.begin());
                 }
-                logR[j][next]=logSOc(R[j][next],prevTheta[next],prevN[next]);
+                logR[j][next]=logSOc(R[j][next],prevSO[next]);
                 for(int k=0;k<adjacencyList[next].size();k++){
                     int f=adjacencyList[next][k];
                     if(remain.erase(f)>0){
-                        prevN[f]=prevN[next];
-                        prevTheta[f]=prevTheta[next];
+                        prevSO[f]=logR[j][next];
                         later.push(f);
                     }
                 }
@@ -341,6 +330,7 @@ MStatus nwayDeformerNode::initialize()
     MFnTypedAttribute tAttr;
     MFnNumericAttribute nAttr;
     MFnEnumAttribute eAttr;
+    MFnMatrixAttribute mAttr;
 
 	aBlendMesh = tAttr.create("blendMesh", "mesh", MFnData::kMesh);
     tAttr.setArray(true);
@@ -361,7 +351,11 @@ MStatus nwayDeformerNode::initialize()
     addAttribute( aRotationConsistency );
     attributeAffects( aRotationConsistency, outputGeom );
 
-	aVisualiseEnergy = nAttr.create( "visualiseEnergy", "ve", MFnNumericData::kBoolean, false );
+    aInitRotation = nAttr.create("initRotation", "ir", MFnNumericData::kDouble);
+    addAttribute(aInitRotation);
+    attributeAffects( aInitRotation, outputGeom );
+
+    aVisualiseEnergy = nAttr.create( "visualiseEnergy", "ve", MFnNumericData::kBoolean, false );
     nAttr.setStorable(true);
     addAttribute( aVisualiseEnergy );
     attributeAffects( aVisualiseEnergy, outputGeom );

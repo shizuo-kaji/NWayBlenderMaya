@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>ACC55067-4EE3-4D9E-8484-C1DF39A6B3C9</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>90A9FCB0E5B209F132D417ACA1EC046C36C01CC9</key>
+		<string>github.com:shizuo-kaji/NWayBlenderMaya.git</string>
+	</dict>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>90A9FCB0E5B209F132D417ACA1EC046C36C01CC9</key>
+		<string>nwayblender/</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:shizuo-kaji/NWayBlenderMaya.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>90A9FCB0E5B209F132D417ACA1EC046C36C01CC9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>90A9FCB0E5B209F132D417ACA1EC046C36C01CC9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>nwayblender</string>
+		</dict>
+	</array>
+</dict>
+</plist>

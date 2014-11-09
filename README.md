@@ -21,7 +21,9 @@ Please refer to Autodesk's web page for detail.
 
 How to use:
 1. Place the plugin files in "MAYA_PLUG_IN_PATH"
+(*.mll for windows, *.bundle for mac)
 2. Place the UI python script files in "MAYA_SCRIPT_PATH"
+(ui_*.py)
 3. Open Script editor in Maya and type in the following Python command:
 #
 import ui_nwayBlender as ui
@@ -30,11 +32,14 @@ import ui_weightController
 ui_weightController.UI_WeightController()
 #
 
-First, create an N-Way blender deformer by the UI.
-And then, also create a controller node by the UI.
+First, create an N-Way blender deformer
+by selecting shapes (the last shape will be deformed)
+and clicking "create" in the UI menu.
+And then, also create a controller node by selecting control points
+and clicking "create" in the UI.
 Finally, connect output of the controller to the input of N-Way blender by clicking "Out2Nway."
 Now the target shape is deformed by moving the controller object around.
-Look at the included jpg file.
+Look at the included jpg and video files for details.
 
 To visualise ARAP energy, go to "Display" => "Polygon" => "Custom Polygon Display"
 and tick "color" and select type "emission."

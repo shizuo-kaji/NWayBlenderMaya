@@ -11,6 +11,7 @@
 #include "tetrise.h"
 #include "MeshMaya.h"
 #include "ARAP.h"
+#include "deformerConst.h"
 
 using namespace Eigen;
 
@@ -34,6 +35,7 @@ public:
     static MObject      aVisualiseEnergy;
     static MObject      aVisualisationMultiplier;
     static MObject      aEnergy;
+    static MObject      aInitRotation;
 
 private:
 	std::vector<Matrix4d> PI;
