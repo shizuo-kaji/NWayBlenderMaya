@@ -5,12 +5,15 @@ N-Way Blender and Weight Controller plugins for Maya
  * @section requirements:  Eigen 3:  http://eigen.tuxfamily.org/
  * @section Autodesk Maya: http://www.autodesk.com/products/autodesk-maya/overview
  * @section (included) AffineLib: https://github.com/shizuo-kaji/AffineLib
- * @version 0.10
- * @date  1/Dec/2013
+ * @version 0.20
+ * @date  18/Jul/2015
  * @author Shizuo KAJI
  */
 
-Shapes are blended according to the user specified weights.
+(For details, look at the paper
+Kaji, S. Tetrisation of triangular meshes and its application in shape blending. Proceedings of MEIS2015 (2015))
+ 
+Two or more shapes are being blended according to the user specified weights.
 Weights can be specified numerically or using the included Weight Controller plugin
 based on the generalised barycentric weight.
 
@@ -33,11 +36,11 @@ ui_weightController.UI_WeightController()
 #
 
 First, create an N-Way blender deformer
-by selecting shapes (the last shape will be deformed)
-and clicking "create" in the UI menu.
-And then, also create a controller node by selecting control points
+by selecting (shift+click) target shapes and clicking "create" in the UI menu.
+The last shape will be deformed.
+Optionally, create a weight controller node by selecting control points
 and clicking "create" in the UI.
-Finally, connect output of the controller to the input of N-Way blender by clicking "Out2Nway."
+Then, connect output of the controller to the input of N-Way blender by clicking "Out2Nway."
 Now the target shape is deformed by moving the controller object around.
 Look at the included jpg and video files for details.
 

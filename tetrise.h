@@ -24,6 +24,7 @@
 
 
 // tetrahedra construction mode
+#define TM_NONE -1
 #define TM_FACE 0
 #define TM_EDGE 1
 #define TM_VERTEX 2
@@ -275,7 +276,8 @@ namespace Tetrise{
                 u=p1-p0;
                 v=p2-p0;
                 q=u.cross(v);
-                c = q/sqrt(q.norm())+(p0+p1+p2)/3;
+                c = q.normalized()+(p0+p1+p2)/3;
+//                c = q/sqrt(q.norm())+(p0+p1+p2)/3;
                 P[i] = mat(p0,p1,p2,c);
             }
         }else if(tetMode == TM_EDGE){
@@ -350,8 +352,8 @@ namespace Tetrise{
                 }
                 c = p0 + c.normalized();
                 for(int j=0;j<vertexList[i].connectedTriangles.size()/2;j++){
-                    p1 = p0+(pts[vertexList[i].connectedTriangles[2*j]]-p0).normalized();
-                    p2 = p0+(pts[vertexList[i].connectedTriangles[2*j+1]]-p0).normalized();
+                    p1 = p0+(pts[vertexList[i].connectedTriangles[2*j]]-p0); //.normalized();
+                    p2 = p0+(pts[vertexList[i].connectedTriangles[2*j+1]]-p0); //.normalized();
                     P.push_back( mat(p0,p1,p2,c));
                 }
             }

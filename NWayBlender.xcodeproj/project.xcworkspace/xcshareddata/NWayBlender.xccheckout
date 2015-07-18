@@ -6,15 +6,19 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>ACC55067-4EE3-4D9E-8484-C1DF39A6B3C9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>NWayBlender</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>90A9FCB0E5B209F132D417ACA1EC046C36C01CC9</key>
 		<string>github.com:shizuo-kaji/NWayBlenderMaya.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>NWayBlender.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>90A9FCB0E5B209F132D417ACA1EC046C36C01CC9</key>
-		<string>nwayblender/</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:shizuo-kaji/NWayBlenderMaya.git</string>
@@ -30,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>90A9FCB0E5B209F132D417ACA1EC046C36C01CC9</string>
 			<key>IDESourceControlWCCName</key>
-			<string>nwayblender</string>
+			<string>NWayBlender</string>
 		</dict>
 	</array>
 </dict>

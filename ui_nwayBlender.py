@@ -47,10 +47,12 @@ class UI_NwayBlender:
                 for node in deformers:
                     frameLayout = pm.frameLayout( label=node.name(), collapsable = True)
                     with frameLayout:
-                        with pm.rowLayout(numberOfColumns=3) :
+                        with pm.rowLayout(numberOfColumns=2) :
                             pm.button( l="Del", c=pm.Callback( self.deleteNode, node))
-                            pm.attrFieldSliderGrp( label="iteration", min=1, max=20, attribute=node.it)
+                            pm.attrFieldSliderGrp( label="iteration", min=1, max=100, attribute=node.it)
+                        with pm.rowLayout(numberOfColumns=2) :
                             pm.attrControlGrp( label="rotation consistency", attribute= node.rc)
+                            pm.attrFieldSliderGrp( label="global rotation", min=-720, max=720, attribute=node.ir)
                         with pm.rowLayout(numberOfColumns=2) :
                             pm.attrControlGrp( label="blend mode", attribute= node.bm)
                             pm.attrControlGrp( label="tet mode", attribute= node.tm)

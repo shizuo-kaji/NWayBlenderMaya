@@ -5,8 +5,8 @@
  * @section requirements:  Eigen 3:  http://eigen.tuxfamily.org/
  * @section Autodesk Maya: http://www.autodesk.com/products/autodesk-maya/overview
  * @section (included) AffineLib: https://github.com/shizuo-kaji/AffineLib
- * @version 0.10
- * @date  1/Dec/2012
+ * @version 0.20
+ * @date  18/Jul/2015
  * @author Shizuo KAJI
  */
 
@@ -14,6 +14,8 @@
 #include "nwayBlender.h"
 #include <set>
 #include <queue>
+//#include <ctime>
+
 
 using namespace Eigen;
 using namespace AffineLib;
@@ -109,6 +111,7 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
     int numTet = (int)tetList.size()/4;
     // initialisation
     if(tetMode != ntetMode){
+//        clock_t clock_start=clock();
         tetMode = ntetMode;
         numMesh = 0;
         // point list
@@ -131,6 +134,10 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
         std::vector< std::map<int,double> > constraint(0);
         //constraint[0][0]=1.0;
         isError = ARAPprecompute(PI, tetList, tetWeight, constraint, EPSILON, dim, constraintMat, solver);
+//        MString es="Init timing: ";
+//        double timing=(double)(clock()- clock_start)/CLOCKS_PER_SEC;
+//        es += timing;
+//        MGlobal::displayInfo(es);
     }
     if(isError>0) return MS::kFailure;
 	// if blend mesh is added, compute log for each tet
@@ -173,11 +180,15 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
         if( blendMode == BM_LOG3){
             for(int i=0;i<numTet;i++)
                 logGL[j][i]=GL[j][i].log();
-        }else if( blendMode == BM_QSL){
+        }else if( blendMode == BM_SQL){
             for(int i=0;i<numTet;i++){
                 S[j][i]=expSym(logS[j][i]);
                 Quaternion<double> q(R[j][i].transpose());
                 quat[j][i] << q.x(), q.y(), q.z(), q.w();
+            }
+        }else if( blendMode == BM_SlRL){
+            for(int i=0;i<numTet;i++){
+                S[j][i]=expSym(logS[j][i]);
             }
         }
         // traverse tetrahedra to compute continuous log of rotation
@@ -250,7 +261,7 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
             AR[i] = AR[i].exp();
             AS[i] = Matrix3d::Identity();
         }
-    }else if(blendMode == BM_QSL){ // quaternion
+    }else if(blendMode == BM_SQL){ // quaternion
         std::vector<Vector4d> Aq(numTet);
         blendMatLinList(S, weight, AS);
         blendQuatList(quat, weight, Aq);
@@ -258,6 +269,13 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
         for(int i=0;i<numTet;i++){
             Quaternion<double> Q(Aq[i]);
             AR[i] = Q.matrix().transpose();
+        }
+    }else if(blendMode == BM_SlRL){ // expSO+linear Sym
+        blendMatList(logR, weight, AR);
+        blendMatLinList(S, weight, AS);
+        #pragma omp parallel for
+        for(int i=0;i<numTet;i++){
+            AR[i] = expSO(AR[i]);
         }
     }else if(blendMode == BM_AFF){ // linear
         blendMatLinList(GL, weight, AR);
@@ -291,11 +309,12 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
         if(k+1<numIter || visualiseEnergy){
             std::vector<Matrix4d> Q(numTet);
             makeTetMatrix(tetMode, new_pts, tetList, faceList, edgeList, vertexList, Q);
-            Matrix3d S;
+            Matrix3d S,R;
             #pragma omp parallel for
             for(int i=0;i<numTet;i++)  {
+                //polarHigham((A[i].transpose()*PI[i]*Q[i]).block(0,0,3,3), S, R);
+                //                AR[i] = AR[i] * R;
                 polarHigham((PI[i]*Q[i]).block(0,0,3,3), S, AR[i]);
-//                tetEnergy[i] = (S-Matrix3d::Identity()).squaredNorm();
                 tetEnergy[i] = (S-AS[i]).squaredNorm();
             }
         }
@@ -319,6 +338,11 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
         }
         visualise(data, outputGeom, ptsEnergy);
     }
+
+//    MString es="Runtime timing: ";
+//    double timing=(double)(clock()- clock_start)/CLOCKS_PER_SEC;
+//    es += timing;
+//    MGlobal::displayInfo(es);
 
     return MS::kSuccess;
 }
@@ -368,7 +392,8 @@ MStatus nwayDeformerNode::initialize()
     aBlendMode = eAttr.create( "blendMode", "bm", BM_SRL );
     eAttr.addField( "expSO+expSym", BM_SRL );
     eAttr.addField( "logmatrix3", BM_LOG3 );
-    eAttr.addField( "quat+linear", BM_QSL );
+    eAttr.addField( "quat+linear", BM_SQL );
+    eAttr.addField( "expSO+linear", BM_SlRL );
     eAttr.addField( "linear", BM_AFF );
     eAttr.addField( "off", BM_OFF );
     addAttribute( aBlendMode );
