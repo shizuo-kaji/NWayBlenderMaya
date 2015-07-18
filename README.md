@@ -18,22 +18,20 @@ Weights can be specified numerically or using the included Weight Controller plu
 based on the generalised barycentric weight.
 
 How to compile:
--- For Mac users, look at the included Xcode project file ( or Makefile )
--- For Windows users, look at the included Visual Studio project file.
+* For Mac users, look at the included Xcode project file ( or Makefile )
+* For Windows users, look at the included Visual Studio project file.
 Please refer to Autodesk's web page for detail.
 
 How to use:
-1. Place the plugin files in "MAYA_PLUG_IN_PATH"
-(*.mll for windows, *.bundle for mac)
-2. Place the UI python script files in "MAYA_SCRIPT_PATH"
-(ui_*.py)
+1. Place the plugin files in "MAYA_PLUG_IN_PATH" (*.mll for windows, *.bundle for mac)
+2. Place the UI python script files in "MAYA_SCRIPT_PATH" (ui_*.py)
 3. Open Script editor in Maya and type in the following Python command:
-#
-import ui_nwayBlender as ui
-ui.UI_NwayBlender()
-import ui_weightController
-ui_weightController.UI_WeightController()
-#
+
+    import ui_nwayBlender as ui
+    ui.UI_NwayBlender()
+    import ui_weightController
+    ui_weightController.UI_WeightController()
+
 
 First, create an N-Way blender deformer
 by selecting (shift+click) target shapes and clicking "create" in the UI menu.
