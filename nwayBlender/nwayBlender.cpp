@@ -89,7 +89,9 @@ void* nwayDeformerNode::creator() { return new nwayDeformerNode; }
  
 MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MMatrix &localToWorldMatrix, unsigned int mIndex )
 {
-	MObject thisNode = thisMObject();
+//            clock_t clock_start=clock();
+
+    MObject thisNode = thisMObject();
     MStatus status;
     MThreadUtils::syncNumOpenMPThreads();    // for OpenMP
     
@@ -312,8 +314,6 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
             Matrix3d S,R;
             #pragma omp parallel for
             for(int i=0;i<numTet;i++)  {
-                //polarHigham((A[i].transpose()*PI[i]*Q[i]).block(0,0,3,3), S, R);
-                //                AR[i] = AR[i] * R;
                 polarHigham((PI[i]*Q[i]).block(0,0,3,3), S, AR[i]);
                 tetEnergy[i] = (S-AS[i]).squaredNorm();
             }

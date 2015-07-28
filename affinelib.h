@@ -18,7 +18,6 @@
 // #define  EIGEN_USE_MKL_ALL
 
 #include <Eigen/Core>
-#include <Eigen/LU>
 #include <Eigen/Dense>
 #include <Eigen/SVD>
 #include <Eigen/StdVector>
