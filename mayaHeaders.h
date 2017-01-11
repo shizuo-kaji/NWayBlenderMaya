@@ -51,17 +51,10 @@
 #ifdef NT_PLUGIN
 #pragma comment (lib, "cg.lib")
 #pragma comment (lib, "cgGL.lib")
-#pragma comment (lib, "Cloth.lib")
 #pragma comment (lib, "Foundation.lib")
 #pragma comment (lib, "Image.lib")
 #pragma comment (lib, "IMFbase.lib")
 #pragma comment (lib, "libawxml2.lib")
-#pragma comment (lib, "libHalf.lib")
-#pragma comment (lib, "libIex.lib") // Link this always (2013 change). Otherwise: 4 missing symbols when linking
-#if !defined(_MANAGED)
-#pragma comment (lib, "libIlmImf.lib")
-#endif
-#pragma comment (lib, "libImath.lib")
 #pragma comment (lib, "libmocap.lib")
 #pragma comment (lib, "libzlib.lib")
 #pragma comment (lib, "OpenMaya.lib")
@@ -69,9 +62,6 @@
 #pragma comment (lib, "OpenMayaFX.lib")
 #pragma comment (lib, "OpenMayaRender.lib")
 #pragma comment (lib, "OpenMayaUI.lib")
-#ifdef _PYTHON_MODULE_
-#pragma comment (lib, "python26.lib")
-#endif
 #pragma comment (lib, "tbb.lib")
 #pragma comment (lib, "tbbmalloc.lib")
 #endif
@@ -102,19 +92,6 @@
 #include <maya/MAttributeSpecArray.h>
 #include <maya/MBoundingBox.h>
 #include <maya/MCallbackIdArray.h>
-#include <maya/MClothConstraint.h>
-#include <maya/MClothConstraintBridge.h>
-#include <maya/MClothConstraintCmd.h>
-#include <maya/MClothControl.h>
-#include <maya/MClothEdge.h>
-#include <maya/MClothForce.h>
-#include <maya/MClothMaterial.h>
-#include <maya/MClothParticle.h>
-#include <maya/MClothPolyhedron.h>
-#include <maya/MClothSolverRegister.h>
-#include <maya/MClothSystem.h>
-#include <maya/MClothTriangle.h>
-#include <maya/MClothTypes.h>
 #include <maya/MColor.h>
 #include <maya/MColorArray.h>
 #include <maya/MCommandMessage.h>
@@ -367,7 +344,7 @@
 #include <maya/MPxDeformerNode.h>
 #include <maya/MPxDragAndDropBehavior.h>
 #include <maya/MPxEmitterNode.h>
-#include <maya/MPxFieldNode.h>
+//#include <maya/MPxFieldNode.h>
 #include <maya/MPxFileTranslator.h>
 #include <maya/MPxFluidEmitterNode.h>
 #include <maya/MPxGeometryData.h>

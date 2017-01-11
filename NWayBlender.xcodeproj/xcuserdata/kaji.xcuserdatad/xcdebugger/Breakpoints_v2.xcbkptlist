@@ -10,13 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
-            landmarkName = "nwayDeformerNode::initialize()"
-            landmarkType = "5">
+            startingLineNumber = "346"
+            endingLineNumber = "346">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,7 +28,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
-            endingLineNumber = "86">
+            endingLineNumber = "86"
+            landmarkName = "blendQuatList(const std::vector&lt; std::vector&lt;Vector4d&gt; &gt;&amp; A, const std::vector&lt;double&gt;&amp; weight, std::vector&lt;Vector4d&gt;&amp; X)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -40,13 +40,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "428942238.792599"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -56,13 +56,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -72,13 +72,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -102,13 +102,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "428942238.792599"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -118,13 +118,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -134,13 +134,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -150,13 +150,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -166,13 +166,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -182,45 +182,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "428942238.792599"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -236,7 +204,7 @@
             startingLineNumber = "114"
             endingLineNumber = "114"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -278,13 +246,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -294,13 +262,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -310,13 +278,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -326,13 +294,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -358,13 +326,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -390,13 +358,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -406,13 +374,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
             landmarkName = "nwayDeformerNode::initialize()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -422,13 +390,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
             landmarkName = "nwayDeformerNode::initialize()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -438,11 +406,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nwayBlender/nwayBlender.cpp"
-            timestampString = "429132894.172738"
+            timestampString = "499761945.953633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338">
+            startingLineNumber = "343"
+            endingLineNumber = "343"
+            landmarkName = "nwayDeformerNode::deform( MDataBlock&amp; data, MItGeometry&amp; itGeo, const MMatrix &amp;localToWorldMatrix, unsigned int mIndex )"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../tetrise.h"
+            timestampString = "496649427.719486"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
+            landmarkName = "makeTetMatrix(short tetMode, const std::vector&lt;Vector3d&gt;&amp; pts, const std::vector&lt;int&gt;&amp; tetList, const std::vector&lt;int&gt;&amp; faceList, const std::vector&lt;edge&gt;&amp; edgeList, const std::vector&lt;vertex&gt;&amp; vertexList, std::vector&lt;Matrix4d&gt;&amp; P, std::vector&lt;double&gt;&amp; tetWeight, bool normalise=false)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

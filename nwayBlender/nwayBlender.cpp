@@ -14,7 +14,7 @@
 #include "nwayBlender.h"
 #include <set>
 #include <queue>
-//#include <ctime>
+#include <ctime>
 
 
 using namespace Eigen;
@@ -33,6 +33,8 @@ MObject nwayDeformerNode::aVisualiseEnergy;
 MObject nwayDeformerNode::aVisualisationMultiplier;
 MObject nwayDeformerNode::aEnergy;
 MObject nwayDeformerNode::aInitRotation;
+MObject nwayDeformerNode::aAreaWeighted;
+MObject nwayDeformerNode::aARAP;
 
 // blend matrices
 template<typename T>
@@ -98,45 +100,45 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
     MArrayDataHandle hBlendMesh = data.inputArrayValue(aBlendMesh);
     short numIter = data.inputValue( aIteration ).asShort();
     short nblendMode = data.inputValue( aBlendMode ).asShort();
-    short ntetMode = data.inputValue( aTetMode ).asShort();
+    short tetMode = data.inputValue( aTetMode ).asShort();
     double visualisationMultiplier = data.inputValue(aVisualisationMultiplier).asDouble();
     bool visualiseEnergy = data.inputValue( aVisualiseEnergy ).asBool();
 	bool nrotationCosistency = data.inputValue( aRotationConsistency ).asBool();
-    if( nrotationCosistency != rotationCosistency){
-        numMesh = 0;
-        rotationCosistency = nrotationCosistency;
-    }
     MPointArray Mpts;
     itGeo.allPositions(Mpts);
     int nnumMesh = hBlendMesh.elementCount();
     int numPts = Mpts.length();
-    int numTet = (int)tetList.size()/4;
     // initialisation
-    if(tetMode != ntetMode){
+    if(!data.isClean(aARAP)){
 //        clock_t clock_start=clock();
-        tetMode = ntetMode;
         numMesh = 0;
         // point list
         pts.resize(numPts);
         for(int i=0;i<numPts;i++){
             pts[i] << Mpts[i].x, Mpts[i].y, Mpts[i].z;
         }
-		std::vector<Matrix4d> P;
-        getMeshData(data, input, inputGeom, mIndex, tetMode, pts, tetList, faceList, edgeList, vertexList, P);
-        dim = removeDegenerate(tetMode, numPts, tetList, faceList, edgeList, vertexList, P);
-        makeAdjacencyList(tetMode, tetList, edgeList, vertexList, adjacencyList);
-        makeTetMatrix(tetMode, pts, tetList, faceList, edgeList, vertexList, P);
+        // make tetrahedral structure
+        getMeshData(data, input, inputGeom, mIndex, tetMode, pts, mesh.tetList, faceList, edgeList, vertexList, mesh.tetMatrix, mesh.tetWeight);
+        mesh.dim = removeDegenerate(tetMode, numPts, mesh.tetList, faceList, edgeList, vertexList, mesh.tetMatrix);
+        makeTetMatrix(tetMode, pts, mesh.tetList, faceList, edgeList, vertexList, mesh.tetMatrix, mesh.tetWeight);
+        makeAdjacencyList(tetMode, mesh.tetList, edgeList, vertexList, adjacencyList);
+        mesh.numTet = (int)mesh.tetList.size()/4;
+        mesh.computeTetMatrixInverse();
         // prepare ARAP solver
-        numTet = (int)tetList.size()/4;
-        PI.resize(numTet);
-		for(int i=0;i<numTet;i++){
-			PI[i] = P[i].inverse().eval();
+        if(!data.inputValue( aAreaWeighted ).asBool()){
+            mesh.tetWeight.clear();
+            mesh.tetWeight.resize(mesh.numTet,1.0);
         }
-        std::vector<double> tetWeight(numTet,1.0);
-        std::vector< std::map<int,double> > constraint(0);
-        //constraint[0][0]=1.0;
-        isError = ARAPprecompute(PI, tetList, tetWeight, constraint, EPSILON, dim, constraintMat, solver);
-//        MString es="Init timing: ";
+        mesh.constraintWeight.resize(1);
+        mesh.constraintWeight[0] = std::make_pair(0,1.0);
+        mesh.constraintVal.resize(1,3);
+        mesh.constraintVal(0,0) = pts[0][0];
+        mesh.constraintVal(0,1) = pts[0][1];
+        mesh.constraintVal(0,2) = pts[0][2];
+        
+        isError = mesh.ARAPprecompute();
+        status = data.setClean(aARAP);
+        //        MString es="Init timing: ";
 //        double timing=(double)(clock()- clock_start)/CLOCKS_PER_SEC;
 //        es += timing;
 //        MGlobal::displayInfo(es);
@@ -149,9 +151,10 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
     quat.resize(nnumMesh);
     L.resize(nnumMesh);
     // for recomputation of parametrisation
-    if(numMesh>nnumMesh || nblendMode != blendMode){
+    if(numMesh>nnumMesh || nblendMode != blendMode || nrotationCosistency != rotationCosistency){
         numMesh =0;
         blendMode = nblendMode;
+        rotationCosistency = nrotationCosistency;
     }
 	for(int j=numMesh; j<nnumMesh; j++){
         hBlendMesh.jumpToElement(j);
@@ -166,30 +169,29 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
         for(int i=0;i<numPts;i++){
             bpts[i] << Mbpts[i].x, Mbpts[i].y, Mbpts[i].z;
         }
-		std::vector<Matrix4d> Q(numTet);
-        makeTetMatrix(tetMode, bpts, tetList, faceList, edgeList, vertexList, Q);
-		logR[j].resize(numTet); logS[j].resize(numTet);
-		R[j].resize(numTet); S[j].resize(numTet);
-		GL[j].resize(numTet); logGL[j].resize(numTet);
-		quat[j].resize(numTet);
-		L[j].resize(numTet);
-        for(int i=0;i<numTet;i++)  {
-            Matrix4d aff=PI[i]*Q[i];
+        makeTetMatrix(tetMode, bpts, mesh.tetList, faceList, edgeList, vertexList, Q, dummy_weight);
+		logR[j].resize(mesh.numTet); logS[j].resize(mesh.numTet);
+		R[j].resize(mesh.numTet); S[j].resize(mesh.numTet);
+		GL[j].resize(mesh.numTet); L[j].resize(mesh.numTet);
+        for(int i=0;i<mesh.numTet;i++)  {
+            Matrix4d aff=mesh.tetMatrixInverse[i]*Q[i];
             GL[j][i]=aff.block(0,0,3,3);
             L[j][i]=transPart(aff);
             parametriseGL(GL[j][i], logS[j][i] ,R[j][i]);
         }
         if( blendMode == BM_LOG3){
-            for(int i=0;i<numTet;i++)
+            logGL[j].resize(mesh.numTet);
+            for(int i=0;i<mesh.numTet;i++)
                 logGL[j][i]=GL[j][i].log();
         }else if( blendMode == BM_SQL){
-            for(int i=0;i<numTet;i++){
+            quat[j].resize(mesh.numTet);
+            for(int i=0;i<mesh.numTet;i++){
                 S[j][i]=expSym(logS[j][i]);
                 Quaternion<double> q(R[j][i].transpose());
                 quat[j][i] << q.x(), q.y(), q.z(), q.w();
             }
         }else if( blendMode == BM_SlRL){
-            for(int i=0;i<numTet;i++){
+            for(int i=0;i<mesh.numTet;i++){
                 S[j][i]=expSym(logS[j][i]);
             }
         }
@@ -201,9 +203,9 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
             Matrix3d initR;
             double angle = data.inputValue(aInitRotation).asDouble();
             initR << 0,M_PI * angle/180.0,0,  -M_PI * angle/180.0,0,0, 0,0,0;
-            std::vector<Matrix3d> prevSO(numTet, initR);
+            std::vector<Matrix3d> prevSO(mesh.numTet, initR);
             // create the adjacency graph to traverse
-            for(int i=0;i<numTet;i++){
+            for(int i=0;i<mesh.numTet;i++){
                 remain.insert(remain.end(),i);
             }
             while(!remain.empty()){
@@ -226,7 +228,7 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
                 }
             }
         }else{
-            for(int i=0;i<numTet;i++)
+            for(int i=0;i<mesh.numTet;i++)
                 logR[j][i] = logSO(R[j][i]);
         }
 	}
@@ -243,32 +245,32 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
 	}
 	// compute ideal affine
     std::vector<Vector3d> new_pts(numPts);
-	std::vector<Matrix4d> A(numTet);
-    std::vector<Matrix3d> AR(numTet),AS(numTet);
-    std::vector<Vector3d> AL(numTet);
+	std::vector<Matrix4d> A(mesh.numTet);
+    std::vector<Matrix3d> AR(mesh.numTet),AS(mesh.numTet);
+    std::vector<Vector3d> AL(mesh.numTet);
     
     blendMatList(L, weight, AL);
     if(blendMode==BM_SRL){
         blendMatList(logR, weight, AR);
         blendMatList(logS, weight, AS);
         #pragma omp parallel for
-        for(int i=0;i<numTet;i++){
+        for(int i=0;i<mesh.numTet;i++){
             AR[i] = expSO(AR[i]);
             AS[i] = expSym(AS[i]);
         }
     }else if(blendMode == BM_LOG3){  // log
         blendMatList(logGL, weight, AR);
         #pragma omp parallel for
-        for(int i=0;i<numTet;i++){
+        for(int i=0;i<mesh.numTet;i++){
             AR[i] = AR[i].exp();
             AS[i] = Matrix3d::Identity();
         }
     }else if(blendMode == BM_SQL){ // quaternion
-        std::vector<Vector4d> Aq(numTet);
+        std::vector<Vector4d> Aq(mesh.numTet);
         blendMatLinList(S, weight, AS);
         blendQuatList(quat, weight, Aq);
         #pragma omp parallel for
-        for(int i=0;i<numTet;i++){
+        for(int i=0;i<mesh.numTet;i++){
             Quaternion<double> Q(Aq[i]);
             AR[i] = Q.matrix().transpose();
         }
@@ -276,61 +278,56 @@ MStatus nwayDeformerNode::deform( MDataBlock& data, MItGeometry& itGeo, const MM
         blendMatList(logR, weight, AR);
         blendMatLinList(S, weight, AS);
         #pragma omp parallel for
-        for(int i=0;i<numTet;i++){
+        for(int i=0;i<mesh.numTet;i++){
             AR[i] = expSO(AR[i]);
         }
     }else if(blendMode == BM_AFF){ // linear
         blendMatLinList(GL, weight, AR);
-        for(int i=0;i<numTet;i++){
+        for(int i=0;i<mesh.numTet;i++){
             AS[i] = Matrix3d::Identity();            
         }
     }else{
         return MS::kFailure;
     }
     
-    MatrixXd G(dim+1,3),Sol;
-    std::vector<double> tetEnergy(numTet);
+    std::vector<double> tetEnergy(mesh.numTet);
     // iterate to determine vertices position
     for(int k=0;k<numIter;k++){
-        for(int i=0;i<numTet;i++){
+        for(int i=0;i<mesh.numTet;i++){
             A[i]=pad(AS[i]*AR[i],AL[i]);
         }
         // solve ARAP
-        std::vector<Vector3d> constraintVector(0);
-        std::vector<double> tetWeight(numTet,1.0);
-        //constraintVector[0]=pts[0];
-        ARAPSolve(A, PI, tetList, tetWeight, constraintVector, EPSILON, dim, constraintMat, solver, Sol);
+        mesh.ARAPSolve(A);
         
         // set new vertices position
         for(int i=0;i<numPts;i++){
-            new_pts[i][0]=Sol(i,0);
-            new_pts[i][1]=Sol(i,1);
-            new_pts[i][2]=Sol(i,2);
+            new_pts[i][0]=mesh.Sol(i,0);
+            new_pts[i][1]=mesh.Sol(i,1);
+            new_pts[i][2]=mesh.Sol(i,2);
         }
         // if iteration continues
         if(k+1<numIter || visualiseEnergy){
-            std::vector<Matrix4d> Q(numTet);
-            makeTetMatrix(tetMode, new_pts, tetList, faceList, edgeList, vertexList, Q);
+            makeTetMatrix(tetMode, new_pts, mesh.tetList, faceList, edgeList, vertexList, Q, dummy_weight);
             Matrix3d S,R;
             #pragma omp parallel for
-            for(int i=0;i<numTet;i++)  {
-                polarHigham((PI[i]*Q[i]).block(0,0,3,3), S, AR[i]);
+            for(int i=0;i<mesh.numTet;i++)  {
+                polarHigham((mesh.tetMatrixInverse[i]*Q[i]).block(0,0,3,3), S, AR[i]);
                 tetEnergy[i] = (S-AS[i]).squaredNorm();
             }
         }
     }
     // set new vertex position
     for(int i=0;i<numPts;i++){
-        Mpts[i].x=Sol(i,0);
-        Mpts[i].y=Sol(i,1);
-        Mpts[i].z=Sol(i,2);
+        Mpts[i].x=mesh.Sol(i,0);
+        Mpts[i].y=mesh.Sol(i,1);
+        Mpts[i].z=mesh.Sol(i,2);
     }
     itGeo.setAllPositions(Mpts);
     
     // set vertex color according to ARAP energy
     if(visualiseEnergy){
         std::vector<double> ptsEnergy;
-        makePtsWeightList(tetMode, numPts, tetList, faceList, edgeList, vertexList, tetEnergy, ptsEnergy);
+        makePtsWeightList(tetMode, numPts, mesh.tetList, faceList, edgeList, vertexList, tetEnergy, ptsEnergy);
         //double max_energy = *std::max_element(ptsEnergy.begin(), ptsEnergy.end());
         outputAttr(data, aEnergy, ptsEnergy);
         for(int i=0;i<numPts;i++){
@@ -356,7 +353,14 @@ MStatus nwayDeformerNode::initialize()
     MFnEnumAttribute eAttr;
     MFnMatrixAttribute mAttr;
 
-	aBlendMesh = tAttr.create("blendMesh", "mesh", MFnData::kMesh);
+    // this attr will be dirtied when ARAP recomputation is needed
+    aARAP = nAttr.create( "arap", "arap", MFnNumericData::kBoolean, true );
+    nAttr.setStorable(false);
+    nAttr.setKeyable(false);
+    nAttr.setHidden(true);
+    addAttribute( aARAP );
+    
+    aBlendMesh = tAttr.create("blendMesh", "mesh", MFnData::kMesh);
     tAttr.setArray(true);
     tAttr.setUsesArrayDataBuilder(true); 
     addAttribute(aBlendMesh);
@@ -384,7 +388,13 @@ MStatus nwayDeformerNode::initialize()
     addAttribute( aVisualiseEnergy );
     attributeAffects( aVisualiseEnergy, outputGeom );
 
-	aVisualisationMultiplier = nAttr.create("visualisationMultiplier", "vmp", MFnNumericData::kDouble, 1.0);
+    aAreaWeighted = nAttr.create( "areaWeighted", "aw", MFnNumericData::kBoolean, false );
+    nAttr.setStorable(true);
+    addAttribute( aAreaWeighted );
+    attributeAffects( aAreaWeighted, outputGeom );
+    attributeAffects( aAreaWeighted, aARAP );
+
+    aVisualisationMultiplier = nAttr.create("visualisationMultiplier", "vmp", MFnNumericData::kDouble, 1.0);
     nAttr.setStorable(true);
 	addAttribute( aVisualisationMultiplier );
 	attributeAffects( aVisualisationMultiplier, outputGeom );
@@ -406,7 +416,8 @@ MStatus nwayDeformerNode::initialize()
     eAttr.addField( "vface", TM_VFACE );
     addAttribute( aTetMode );
     attributeAffects( aTetMode, outputGeom );
-
+    attributeAffects( aTetMode, aARAP );
+    
 	aIteration = nAttr.create("iteration", "it", MFnNumericData::kShort, 1);
     addAttribute(aIteration);
     attributeAffects(aIteration, outputGeom);

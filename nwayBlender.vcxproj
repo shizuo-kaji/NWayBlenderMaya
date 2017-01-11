@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -10,69 +10,67 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="nwayBlender\nwayBlender.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\affinelib.h" />
-    <ClInclude Include="..\ARAP.h" />
-    <ClInclude Include="..\deformerConst.h" />
-    <ClInclude Include="..\MeshMaya.h" />
-    <ClInclude Include="..\tetrise.h" />
-    <ClInclude Include="nwayBlender\mayaHeaders.h" />
-    <ClInclude Include="nwayBlender\nwayBlender.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CDAC5214-E3EC-48A0-9C83-F3FEFC685B85}</ProjectGuid>
-    <RootNamespace>nway</RootNamespace>
+    <ProjectGuid>{67131301-2A24-437B-8B18-9498812D7B0E}</ProjectGuid>
+    <RootNamespace>nwayBlender</RootNamespace>
+    <ProjectName>nwayBlender</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="MayaPlugin.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="MayaPluginDebug.props" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetExt>.mll</TargetExt>
+    <OutDir>$(USERPROFILE)\Documents\maya\</OutDir>
+    <IntDir>$(USERPROFILE)\Documents\maya\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetExt>.mll</TargetExt>
+    <OutDir>$(USERPROFILE)\Documents\maya\</OutDir>
+    <IntDir>$(USERPROFILE)\Documents\maya\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
-      <PreprocessorDefinitions>_WINDLL;NT_PLUGIN;NDEBUG;REQUIRE_IOSTREAM;_WIN64</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files\Autodesk\Maya2012\include;$(HOME)\Dropbox\SGW2011\mayac\eigen;..\</AdditionalIncludeDirectories>
-      <Optimization>Full</Optimization>
-      <OpenMPSupport>true</OpenMPSupport>
-    </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Program Files\Autodesk\Maya2012\lib</AdditionalLibraryDirectories>
-      <AdditionalOptions>/export:initializePlugin /export:uninitializePlugin</AdditionalOptions>
+      <AdditionalOptions>/export:initializePlugin /export:uninitializePlugin %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>C:\Program Files\Autodesk\Maya2016\lib</AdditionalLibraryDirectories>
     </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>c:\usr\include\eigen;$(USERPROFILE)\Dropbox\maple\mayac\;C:\Program Files\Autodesk\Maya2016\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <OpenMPSupport>true</OpenMPSupport>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Link>
-      <AdditionalOptions>/export:initializePlugin /export:uninitializePlugin</AdditionalOptions>
-      <AdditionalLibraryDirectories>C:\Program Files\Autodesk\Maya2012\lib</AdditionalLibraryDirectories>
-    </Link>
     <ClCompile>
-      <Optimization>Full</Optimization>
-      <PreprocessorDefinitions>_WINDLL;NT_PLUGIN;NDEBUG;REQUIRE_IOSTREAM;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
-      <OpenMPSupport>true</OpenMPSupport>
-      <AdditionalIncludeDirectories>C:\Program Files\Autodesk\Maya2012\include;$(HOME)\Dropbox\SGW2011\mayac\eigen;..\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>c:\usr\include\eigen;$(USERPROFILE)\Dropbox\maple\mayac\;C:\Program Files\Autodesk\Maya2016\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Program Files\Autodesk\Maya2016\lib</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="nwayBlender\nwayBlender.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="nwayBlender\nwayBlender.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

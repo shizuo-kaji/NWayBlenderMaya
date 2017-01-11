@@ -58,7 +58,7 @@ MStatus weightControllerNode::compute( const MPlug& plug, MDataBlock& dataBlock)
             w[i]=1.0;
             flag=false;
             break;
-        }else if(abs(A[i])<EPSILON && D[i] < 0){   // on an edge
+        }else if(fabs(A[i])<EPSILON && D[i] < 0){   // on an edge
             int j=(i+1) % num;
             w[i]=r[j];
             w[j]=r[i];

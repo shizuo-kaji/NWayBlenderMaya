@@ -38,7 +38,7 @@ class UI_WeightController:
     def createUISet(self):
         self._childLayout = pm.columnLayout( adj=True )
         with self._childLayout:
-            pm.text(l="select vertex objects, then click Create. final object becomes controller")
+            pm.text(l="select vertex objects, then click Create. the last object becomes the controller")
             self.deformers = pm.ls(type="weightController")
             for deformer in self.deformers:
                 frameLayout = pm.frameLayout( label=deformer.name(), collapsable = True)

@@ -53,10 +53,11 @@ class UI_NwayBlender:
                         with pm.rowLayout(numberOfColumns=2) :
                             pm.attrControlGrp( label="rotation consistency", attribute= node.rc)
                             pm.attrFieldSliderGrp( label="global rotation", min=-720, max=720, attribute=node.ir)
-                        with pm.rowLayout(numberOfColumns=2) :
+                        with pm.rowLayout(numberOfColumns=3) :
                             pm.attrControlGrp( label="blend mode", attribute= node.bm)
                             pm.attrControlGrp( label="tet mode", attribute= node.tm)
-                        with pm.rowLayout(numberOfColumns=2) :    
+                            pm.attrControlGrp( label="area weight", attribute= node.aw)
+                        with pm.rowLayout(numberOfColumns=2) :
                             pm.attrControlGrp( label="visualise energy", attribute= node.ve)
                             pm.attrFieldSliderGrp( label="visualisation multiplier", min=0.001, max=1000, attribute=node.vmp)
                         for j in range(node.blendMesh.numElements()):

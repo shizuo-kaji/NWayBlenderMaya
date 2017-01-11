@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A135EB719F56C78007402FC /* deformerConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A135EB619F56C78007402FC /* deformerConst.h */; };
 		2A8DB49119226A4200D79BA7 /* StdAfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DB49019226A4200D79BA7 /* StdAfx.cpp */; };
 		2A8DB49D192272C500D79BA7 /* nwayBlender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DB49B192272C500D79BA7 /* nwayBlender.cpp */; };
 		2A8DB49E192272C500D79BA7 /* nwayBlender.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A8DB49C192272C500D79BA7 /* nwayBlender.h */; };
@@ -16,10 +15,22 @@
 		2A8DB4B41922744900D79BA7 /* weightController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A8DB4B21922744900D79BA7 /* weightController.h */; };
 		2A8DB4B6192274AC00D79BA7 /* weightController.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A8DB4A61922742200D79BA7 /* weightController.bundle */; };
 		2A8DB4B7192274B500D79BA7 /* nwayBlender.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A8DB48B19226A4200D79BA7 /* nwayBlender.bundle */; };
-		2AD556C0199407A0001F79B2 /* affinelib.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AD556BD199407A0001F79B2 /* affinelib.h */; };
-		2AD556C1199407A0001F79B2 /* MeshMaya.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AD556BE199407A0001F79B2 /* MeshMaya.h */; };
-		2AD556C2199407A0001F79B2 /* tetrise.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AD556BF199407A0001F79B2 /* tetrise.h */; };
-		2AD556C4199407FF001F79B2 /* ARAP.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AD556C3199407FF001F79B2 /* ARAP.h */; };
+		2AC02FC71E2616D80027E840 /* affinelib.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FBF1E2616D80027E840 /* affinelib.h */; };
+		2AC02FC81E2616D80027E840 /* affinelib.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FBF1E2616D80027E840 /* affinelib.h */; };
+		2AC02FC91E2616D80027E840 /* blendAff.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC01E2616D80027E840 /* blendAff.h */; };
+		2AC02FCA1E2616D80027E840 /* blendAff.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC01E2616D80027E840 /* blendAff.h */; };
+		2AC02FCB1E2616D80027E840 /* deformerConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC11E2616D80027E840 /* deformerConst.h */; };
+		2AC02FCC1E2616D80027E840 /* deformerConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC11E2616D80027E840 /* deformerConst.h */; };
+		2AC02FCD1E2616D80027E840 /* distance.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC21E2616D80027E840 /* distance.h */; };
+		2AC02FCE1E2616D80027E840 /* distance.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC21E2616D80027E840 /* distance.h */; };
+		2AC02FCF1E2616D80027E840 /* laplacian.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC31E2616D80027E840 /* laplacian.h */; };
+		2AC02FD01E2616D80027E840 /* laplacian.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC31E2616D80027E840 /* laplacian.h */; };
+		2AC02FD11E2616D80027E840 /* mayaHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC41E2616D80027E840 /* mayaHeaders.h */; };
+		2AC02FD21E2616D80027E840 /* mayaHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC41E2616D80027E840 /* mayaHeaders.h */; };
+		2AC02FD31E2616D80027E840 /* MeshMaya.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC51E2616D80027E840 /* MeshMaya.h */; };
+		2AC02FD41E2616D80027E840 /* MeshMaya.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC51E2616D80027E840 /* MeshMaya.h */; };
+		2AC02FD51E2616D80027E840 /* tetrise.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC61E2616D80027E840 /* tetrise.h */; };
+		2AC02FD61E2616D80027E840 /* tetrise.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AC02FC61E2616D80027E840 /* tetrise.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,13 +57,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2A135EB619F56C78007402FC /* deformerConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = deformerConst.h; path = ../deformerConst.h; sourceTree = "<group>"; };
 		2A2EE25E1A0F8C47008979A4 /* ui_weightController.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = ui_weightController.py; path = ../../maya/plugin_deformer/ui_weightController.py; sourceTree = "<group>"; };
 		2A35629B198A54E0002AA823 /* ui_nwayBlender.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = ui_nwayBlender.py; path = ../../Maya/plugin_deformer/ui_nwayBlender.py; sourceTree = "<group>"; };
 		2A8DB48B19226A4200D79BA7 /* nwayBlender.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = nwayBlender.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8DB49019226A4200D79BA7 /* StdAfx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StdAfx.cpp; sourceTree = "<group>"; };
 		2A8DB49219226A4200D79BA7 /* StdAfx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdAfx.h; sourceTree = "<group>"; };
-		2A8DB49319226A4200D79BA7 /* mayaHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mayaHeaders.h; sourceTree = "<group>"; };
 		2A8DB499192272AF00D79BA7 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2A8DB49A192272AF00D79BA7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		2A8DB49B192272C500D79BA7 /* nwayBlender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nwayBlender.cpp; sourceTree = "<group>"; };
@@ -60,13 +69,16 @@
 		2A8DB4A61922742200D79BA7 /* weightController.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = weightController.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8DB4AA1922742200D79BA7 /* StdAfx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StdAfx.cpp; sourceTree = "<group>"; };
 		2A8DB4AC1922742200D79BA7 /* StdAfx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StdAfx.h; sourceTree = "<group>"; };
-		2A8DB4AD1922742200D79BA7 /* mayaHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mayaHeaders.h; sourceTree = "<group>"; };
 		2A8DB4B11922744900D79BA7 /* weightController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = weightController.cpp; sourceTree = "<group>"; };
 		2A8DB4B21922744900D79BA7 /* weightController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weightController.h; sourceTree = "<group>"; };
-		2AD556BD199407A0001F79B2 /* affinelib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = affinelib.h; path = ../affinelib.h; sourceTree = "<group>"; };
-		2AD556BE199407A0001F79B2 /* MeshMaya.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeshMaya.h; path = ../MeshMaya.h; sourceTree = "<group>"; };
-		2AD556BF199407A0001F79B2 /* tetrise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tetrise.h; path = ../tetrise.h; sourceTree = "<group>"; };
-		2AD556C3199407FF001F79B2 /* ARAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARAP.h; path = ../ARAP.h; sourceTree = "<group>"; };
+		2AC02FBF1E2616D80027E840 /* affinelib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = affinelib.h; sourceTree = "<group>"; };
+		2AC02FC01E2616D80027E840 /* blendAff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blendAff.h; sourceTree = "<group>"; };
+		2AC02FC11E2616D80027E840 /* deformerConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deformerConst.h; sourceTree = "<group>"; };
+		2AC02FC21E2616D80027E840 /* distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = distance.h; sourceTree = "<group>"; };
+		2AC02FC31E2616D80027E840 /* laplacian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = laplacian.h; sourceTree = "<group>"; };
+		2AC02FC41E2616D80027E840 /* mayaHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mayaHeaders.h; sourceTree = "<group>"; };
+		2AC02FC51E2616D80027E840 /* MeshMaya.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeshMaya.h; sourceTree = "<group>"; };
+		2AC02FC61E2616D80027E840 /* tetrise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tetrise.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,12 +102,15 @@
 		2A8DB48219226A4200D79BA7 = {
 			isa = PBXGroup;
 			children = (
-				2A135EB619F56C78007402FC /* deformerConst.h */,
+				2AC02FBF1E2616D80027E840 /* affinelib.h */,
+				2AC02FC01E2616D80027E840 /* blendAff.h */,
+				2AC02FC11E2616D80027E840 /* deformerConst.h */,
+				2AC02FC21E2616D80027E840 /* distance.h */,
+				2AC02FC31E2616D80027E840 /* laplacian.h */,
+				2AC02FC41E2616D80027E840 /* mayaHeaders.h */,
+				2AC02FC51E2616D80027E840 /* MeshMaya.h */,
+				2AC02FC61E2616D80027E840 /* tetrise.h */,
 				2A2EE25E1A0F8C47008979A4 /* ui_weightController.py */,
-				2AD556C3199407FF001F79B2 /* ARAP.h */,
-				2AD556BD199407A0001F79B2 /* affinelib.h */,
-				2AD556BE199407A0001F79B2 /* MeshMaya.h */,
-				2AD556BF199407A0001F79B2 /* tetrise.h */,
 				2A35629B198A54E0002AA823 /* ui_nwayBlender.py */,
 				2A8DB48D19226A4200D79BA7 /* nwayBlender */,
 				2A8DB4A71922742200D79BA7 /* weightController */,
@@ -121,7 +136,6 @@
 				2A8DB49C192272C500D79BA7 /* nwayBlender.h */,
 				2A8DB49019226A4200D79BA7 /* StdAfx.cpp */,
 				2A8DB49219226A4200D79BA7 /* StdAfx.h */,
-				2A8DB49319226A4200D79BA7 /* mayaHeaders.h */,
 			);
 			path = nwayBlender;
 			sourceTree = "<group>";
@@ -133,7 +147,6 @@
 				2A8DB4B21922744900D79BA7 /* weightController.h */,
 				2A8DB4AA1922742200D79BA7 /* StdAfx.cpp */,
 				2A8DB4AC1922742200D79BA7 /* StdAfx.h */,
-				2A8DB4AD1922742200D79BA7 /* mayaHeaders.h */,
 			);
 			name = weightController;
 			path = WeightController;
@@ -146,12 +159,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AD556C4199407FF001F79B2 /* ARAP.h in Headers */,
-				2AD556C1199407A0001F79B2 /* MeshMaya.h in Headers */,
-				2A135EB719F56C78007402FC /* deformerConst.h in Headers */,
+				2AC02FD11E2616D80027E840 /* mayaHeaders.h in Headers */,
+				2AC02FCF1E2616D80027E840 /* laplacian.h in Headers */,
+				2AC02FCB1E2616D80027E840 /* deformerConst.h in Headers */,
 				2A8DB49E192272C500D79BA7 /* nwayBlender.h in Headers */,
-				2AD556C0199407A0001F79B2 /* affinelib.h in Headers */,
-				2AD556C2199407A0001F79B2 /* tetrise.h in Headers */,
+				2AC02FCD1E2616D80027E840 /* distance.h in Headers */,
+				2AC02FD31E2616D80027E840 /* MeshMaya.h in Headers */,
+				2AC02FC91E2616D80027E840 /* blendAff.h in Headers */,
+				2AC02FC71E2616D80027E840 /* affinelib.h in Headers */,
+				2AC02FD51E2616D80027E840 /* tetrise.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +175,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AC02FD21E2616D80027E840 /* mayaHeaders.h in Headers */,
+				2AC02FD01E2616D80027E840 /* laplacian.h in Headers */,
+				2AC02FCC1E2616D80027E840 /* deformerConst.h in Headers */,
 				2A8DB4B41922744900D79BA7 /* weightController.h in Headers */,
+				2AC02FCE1E2616D80027E840 /* distance.h in Headers */,
+				2AC02FD41E2616D80027E840 /* MeshMaya.h in Headers */,
+				2AC02FCA1E2616D80027E840 /* blendAff.h in Headers */,
+				2AC02FC81E2616D80027E840 /* affinelib.h in Headers */,
+				2AC02FD61E2616D80027E840 /* tetrise.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +232,7 @@
 		2A8DB48319226A4200D79BA7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "mcg-q";
 			};
 			buildConfigurationList = 2A8DB48619226A4200D79BA7 /* Build configuration list for PBXProject "NWayBlender" */;
@@ -264,17 +288,26 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
+					MAC_PLUGIN,
+					_BOOL,
+					REQUIRE_IOSTREAM,
+					OSMac_,
+					DEBUG,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -283,8 +316,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = /usr/local/include/eigen3/;
 			};
@@ -303,21 +337,33 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					MAC_PLUGIN,
+					_BOOL,
+					REQUIRE_IOSTREAM,
+					OSMac_,
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = /usr/local/include/eigen3/;
 			};
@@ -333,13 +379,6 @@
 				DYLIB_CURRENT_VERSION = "";
 				EXECUTABLE_EXTENSION = bundle;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(MAYA_LOCATION)/devkit/include/maya/OpenMayaMac.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					MAC_PLUGIN,
-					_BOOL,
-					REQUIRE_IOSTREAM,
-					DEBUG,
-				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -347,8 +386,17 @@
 				HEADER_SEARCH_PATHS = (
 					.,
 					"$(MAYA_LOCATION)/devkit/include/",
+					/usr/local/include/eigen3,
+					/usr/local/include,
+					"${MKLROOT}/include",
 				);
-				LIBRARY_SEARCH_PATHS = "$(MAYA_LOCATION)/Maya.app/Contents/MacOS";
+				LIBRARY_SEARCH_PATHS = (
+					"$(MAYA_LOCATION)/Maya.app/Contents/MacOS",
+					/opt/intel/mkl/lib,
+					/usr/local/lib,
+					/usr/local/opt/metis4/lib,
+					/usr/local/lib/opencv3,
+				);
 				MACH_O_TYPE = mh_bundle;
 				MACOSX_DEPLOYMENT_TARGET = "";
 				MAYA_LOCATION = /Applications/Autodesk/maya;
@@ -362,9 +410,18 @@
 					"-lOpenMayaRender",
 					"-lOpenMayaUI",
 					"-lFoundation",
+					"-lcholmod",
+					"-lamd",
+					"-lmetis",
+					"-lccolamd",
+					"-lcolamd",
+					"-lcamd",
+					"-lsuitesparseconfig",
+					"-lceres",
+					"-lglog",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_LOCATION = "$(HOME)/Library/Preferences/Autodesk/maya/2014-x64";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -378,12 +435,6 @@
 				DYLIB_COMPATIBILITY_VERSION = "";
 				DYLIB_CURRENT_VERSION = "";
 				EXECUTABLE_EXTENSION = bundle;
-				GCC_PREFIX_HEADER = "$(MAYA_LOCATION)/devkit/include/maya/OpenMayaMac.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					MAC_PLUGIN,
-					_BOOL,
-					REQUIRE_IOSTREAM,
-				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -391,8 +442,17 @@
 				HEADER_SEARCH_PATHS = (
 					.,
 					"$(MAYA_LOCATION)/devkit/include/",
+					/usr/local/include/eigen3,
+					/usr/local/include,
+					"${MKLROOT}/include",
 				);
-				LIBRARY_SEARCH_PATHS = "$(MAYA_LOCATION)/Maya.app/Contents/MacOS";
+				LIBRARY_SEARCH_PATHS = (
+					"$(MAYA_LOCATION)/Maya.app/Contents/MacOS",
+					/opt/intel/mkl/lib,
+					/usr/local/lib,
+					/usr/local/opt/metis4/lib,
+					/usr/local/lib/opencv3,
+				);
 				MACH_O_TYPE = mh_bundle;
 				MACOSX_DEPLOYMENT_TARGET = "";
 				MAYA_LOCATION = /Applications/Autodesk/maya;
@@ -406,9 +466,18 @@
 					"-lOpenMayaRender",
 					"-lOpenMayaUI",
 					"-lFoundation",
+					"-lcholmod",
+					"-lamd",
+					"-lmetis",
+					"-lccolamd",
+					"-lcolamd",
+					"-lcamd",
+					"-lsuitesparseconfig",
+					"-lceres",
+					"-lglog",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_LOCATION = "$(HOME)/Library/Preferences/Autodesk/maya/2014-x64";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;
@@ -423,12 +492,6 @@
 				DYLIB_CURRENT_VERSION = "";
 				EXECUTABLE_EXTENSION = bundle;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(MAYA_LOCATION)/devkit/include/maya/OpenMayaMac.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					MAC_PLUGIN,
-					_BOOL,
-					REQUIRE_IOSTREAM,
-				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -453,7 +516,6 @@
 					"-lFoundation",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_LOCATION = "$(HOME)/Library/Preferences/Autodesk/maya/2014-x64";
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -467,12 +529,6 @@
 				DYLIB_COMPATIBILITY_VERSION = "";
 				DYLIB_CURRENT_VERSION = "";
 				EXECUTABLE_EXTENSION = bundle;
-				GCC_PREFIX_HEADER = "$(MAYA_LOCATION)/devkit/include/maya/OpenMayaMac.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					MAC_PLUGIN,
-					_BOOL,
-					REQUIRE_IOSTREAM,
-				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -497,7 +553,6 @@
 					"-lFoundation",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_LOCATION = "$(HOME)/Library/Preferences/Autodesk/maya/2014-x64";
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;

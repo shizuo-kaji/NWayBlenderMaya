@@ -11,8 +11,7 @@
 #pragma once
 
 
-//#include "mayaHeaders.h"
-//#include "tetrise.h"
+#include "tetrise.h"
 #include <set>
 
 using namespace Tetrise;
@@ -21,7 +20,7 @@ using namespace Tetrise;
 
 // get face list
 int makeFaceTet(MDataBlock& data, MObject& input, MObject& inputGeom, unsigned int mIndex, const std::vector<Vector3d>& pts,
-                std::vector<int>& faceList, std::vector<int>& tetList, std::vector<Matrix4d>& tetMatrix){
+                std::vector<int>& tetList, std::vector<Matrix4d>& tetMatrix, std::vector<double>& tetWeight){
     // returns total number of pts including ghost ones
     // read mesh data
     int numPts = (int) pts.size();
@@ -35,7 +34,7 @@ int makeFaceTet(MDataBlock& data, MObject& input, MObject& inputGeom, unsigned i
     // face list
     MIntArray count, triangles;
     inputMesh.getTriangles( count, triangles );
-    faceList.resize(triangles.length());
+    std::vector<int> faceList(triangles.length());
     for(int i=0;i<triangles.length();i++){
         faceList[i]=triangles[i];
     }
@@ -43,7 +42,7 @@ int makeFaceTet(MDataBlock& data, MObject& input, MObject& inputGeom, unsigned i
     std::vector<vertex> vList;
     std::vector<edge> eList;
     makeTetList(TM_FACE, numPts, faceList, eList, vList, tetList);
-    makeTetMatrix(TM_FACE, pts, tetList, faceList, eList, vList, tetMatrix);
+    makeTetMatrix(TM_FACE, pts, tetList, faceList, eList, vList, tetMatrix, tetWeight);
     return numPts + (int)tetList.size()/4;
 }
 
@@ -108,7 +107,7 @@ void makeVertexList(MObject& mesh, std::vector<vertex>& vertexList){
 int getMeshData(MDataBlock& data, MObject& input, MObject& inputGeom, unsigned int mIndex,
                 short tetMode, const std::vector<Vector3d>& pts, std::vector<int>& tetList,
                 std::vector<int>& faceList, std::vector<edge>& edgeList,
-                std::vector<vertex>& vertexList, std::vector<Matrix4d>& tetMat){
+                std::vector<vertex>& vertexList, std::vector<Matrix4d>& tetMat, std::vector<double>& tetWeight){
     // returns total number of pts including ghost ones
     // read mesh data
     int numPts = (int) pts.size();
@@ -123,7 +122,7 @@ int getMeshData(MDataBlock& data, MObject& input, MObject& inputGeom, unsigned i
     makeVertexList(oInputGeom, vertexList);
     makeEdgeList(faceList, edgeList);
     int dim=makeTetList(tetMode, numPts, faceList, edgeList, vertexList, tetList);
-    makeTetMatrix(tetMode, pts, tetList, faceList, edgeList, vertexList, tetMat);
+    makeTetMatrix(tetMode, pts, tetList, faceList, edgeList, vertexList, tetMat, tetWeight);
     return dim;
 }
 
@@ -159,6 +158,19 @@ void readMatrixArray(MArrayDataHandle& handle, std::vector<Matrix4d>& m){
         mat(3,0), mat(3,1), mat(3,2), mat(3,3);
     }
 }
+
+// read array of vector attributes into Eigen vectors
+void readVectorArray(MArrayDataHandle& handle, std::vector<Vector3d>& V){
+    int num=handle.elementCount();
+    V.resize(num);
+    MVector v;
+    for(int i=0;i<num;i++){
+        handle.jumpToArrayElement(i);
+        v=handle.inputValue().asVector();
+        V[i] << v(0), v(1), v(2);
+    }
+}
+
 
 ////
 void outputAttr(MDataBlock& data, MObject& attribute, std::vector<double>& values){
