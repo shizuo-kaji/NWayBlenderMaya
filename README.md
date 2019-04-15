@@ -22,6 +22,7 @@ Mathematical Progress in Expressive Image Synthesis III, pp. 7--19, Springer-Jap
 http://arxiv.org/abs/1601.04816
 
 #How to compile:
+- Get devkit at https://www.autodesk.com/developmaya
 - MacOS: look at the included Xcode project file ( or Makefile )
 - Windows: look at the included Visual Studio project file. __DO NOT__ turn on AVX instructions.
 - on some systems, specifying the compiler option -DEIGEN_DONT_VECTORIZE may be necessary to avoid compilation errors (thank giordi91 for this information)
